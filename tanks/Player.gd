@@ -1,6 +1,7 @@
 extends "res://tanks/Tank.gd"
 
 func control(delta):
+	#TODO make manually
 	$Turret.look_at(get_global_mouse_position())
 	
 	var rot_dir = 0
@@ -12,9 +13,9 @@ func control(delta):
 		
 	rotation += rotation_speed * rot_dir * delta
 	
-	velocity = Vector2()
+	velocity = Vector2.ZERO
 	
 	if Input.is_action_pressed("forward"):
-		velocity = Vector2(speed, 0).rotated(rotation)
+		velocity = (Vector2.RIGHT * speed).rotated(rotation)
 	if Input.is_action_pressed("back"):
-		velocity = Vector2(-speed / 2, 0).rotated(rotation)
+		velocity = (Vector2.LEFT * speed / 2).rotated(rotation)
