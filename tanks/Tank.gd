@@ -15,6 +15,7 @@ var alive = true
 
 func _ready():
 	$GunTimer.wait_time = gun_cooldown
+	$Turret.offset.x = 20
 	
 func _physics_process(delta):
 	if not alive:

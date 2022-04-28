@@ -1,8 +1,14 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://terrain/terrain_tiles.tres" type="TileSet" id=1]
 [ext_resource path="res://tanks/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://maps/Map.gd" type="Script" id=3]
+[ext_resource path="res://tanks/Enemy.tscn" type="PackedScene" id=4]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 45.0502, 0, -45.0502, 0, 119.064, 64, 2.50279, -7.5, -2.50279, 7.5, 63.0011, 105, -4.50502, -35, 4.50502, 35, 62, 403, -32.5363, 0.5, 32.5363, -0.5, 123.068, 444, -38.543, 2, 38.543, -2, 912.949, 447, 0.500558, 25.5, -0.500558, -25.5, 960.001, 395, -1.00112, 25, 1.00112, -25, 960.001, 114, 37.5419, 5, -37.5419, -5, 914.951, 66, 0, 0, 0, 0, 119.064, 64 )
+}
 
 [node name="Map01" type="Node2D"]
 script = ExtResource( 3 )
@@ -16,3 +22,17 @@ tile_data = PoolIntArray( -1, 20, 0, -65536, 17, 0, -65535, 17, 0, -65534, 17, 0
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 178, 167 )
+
+[node name="Paths" type="Node2D" parent="."]
+
+[node name="Path2D" type="Path2D" parent="Paths"]
+position = Vector2( 2, 1 )
+scale = Vector2( 0.998885, 1 )
+curve = SubResource( 1 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Paths/Path2D"]
+position = Vector2( 119.064, 64 )
+rotation = 3.11802
+
+[node name="Enemy" parent="Paths/Path2D/PathFollow2D" instance=ExtResource( 4 )]
+speed = 200

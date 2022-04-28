@@ -11,7 +11,7 @@ config_version=4
 [application]
 
 config/name="Godot Tank Battle"
-run/main_scene="res://tanks/Player.tscn"
+run/main_scene="res://maps/Map01.tscn"
 config/icon="res://icon.png"
 
 [display]
