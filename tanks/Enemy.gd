@@ -16,6 +16,7 @@ func _process(delta):
 		var current_dir = Vector2.RIGHT.rotated($Turret.global_rotation)
 		
 		$Turret.global_rotation = current_dir.linear_interpolate(target_dir, turret_speed * delta).angle()
+		#TODO set default
 		
 func control(delta):
 	if parent is PathFollow2D:
