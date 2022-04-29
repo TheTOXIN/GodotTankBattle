@@ -22,12 +22,15 @@ func control(delta):
 	if parent is PathFollow2D:
 		parent.offset += speed * delta
 		position = Vector2.ZERO
-	else: 
+	else:
 		pass
+		
+func take_damage(damage):
+	print("DAMAGE")
 
 func _on_DetectRadius_body_entered(body):
-	if body.name == "Player":
-		target = body
+	# if body.name == "Player": move to physic layer
+	target = body
 
 func _on_DetectRadius_body_exited(body):
 	if body == target:

@@ -36,3 +36,5 @@ rotation = 3.11802
 
 [node name="Enemy" parent="Paths/Path2D/PathFollow2D" instance=ExtResource( 4 )]
 speed = 200
+
+[connection signal="shoot" from="Player" to="." method="_on_Tank_shoot"]
