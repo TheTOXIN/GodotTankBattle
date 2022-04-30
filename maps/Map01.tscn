@@ -35,6 +35,7 @@ position = Vector2( 119.064, 64 )
 rotation = 3.11802
 
 [node name="Enemy" parent="Paths/Path2D/PathFollow2D" instance=ExtResource( 4 )]
-speed = 200
+detect_radius = 500
 
 [connection signal="shoot" from="Player" to="." method="_on_Tank_shoot"]
+[connection signal="shoot" from="Paths/Path2D/PathFollow2D/Enemy" to="." method="_on_Tank_shoot"]
