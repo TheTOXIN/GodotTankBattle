@@ -38,7 +38,11 @@ func change_health():
 	emit_signal("health_changed", health * 100 / max_health)
 	
 func explode():
-	queue_free()
+	alive = false
+	$CollisionShape2D.disabled = true
+	$Turret.hide()
+	$Explosion.show()
+	$Explosion.play()
 	
 func shoot():
 	if can_shoot:
@@ -47,9 +51,13 @@ func shoot():
 		var dir = Vector2.RIGHT.rotated($Turret.global_rotation)
 		var pos = $Turret/Muzzle.global_position
 		emit_signal('shoot', Bullet, pos, dir)
+		$AnimationPlayer.play("muzzle_flash")
 	
 func control(delta):
 	pass
 
 func _on_GunTimer_timeout():
 	can_shoot = true
+
+func _on_Explosion_animation_finished():
+	queue_free()
