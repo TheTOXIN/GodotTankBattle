@@ -9,9 +9,9 @@ extents = Vector2( 15.5, 12 )
 
 [node name="EnemyBullet" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
-speed = 750
+speed = 800
 damage = 10
-lifetime = 2.0
+lifetime = 1.0
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 2 )

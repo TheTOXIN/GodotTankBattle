@@ -8,21 +8,37 @@ export (PackedScene) var Bullet
 export (int) var max_speed
 export (float) var rotation_speed
 export (float) var gun_cooldown
-export (int) var health
+export (int) var max_health
 
 var velocity = Vector2()
 var can_shoot = true
 var alive = true
+var health = 0
 
 func _ready():
 	$GunTimer.wait_time = gun_cooldown
 	$Turret.offset.x = 20
+	
+	health = max_health
+	change_health()
 	
 func _physics_process(delta):
 	if not alive:
 		return
 	control(delta)
 	move_and_slide(velocity)
+	
+func take_damage(amount):
+	health -= amount
+	change_health()
+	if health <= 0:
+		explode()
+	
+func change_health():
+	emit_signal("health_changed", health * 100 / max_health)
+	
+func explode():
+	queue_free()
 	
 func shoot():
 	if can_shoot:

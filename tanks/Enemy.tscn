@@ -15,9 +15,9 @@ script = ExtResource( 3 )
 Bullet = ExtResource( 4 )
 max_speed = 175
 gun_cooldown = 0.5
-health = 100
+max_health = 50
 turret_speed = 1.0
-detect_radius = 300
+detect_radius = 200
 
 [node name="Body" parent="." index="0"]
 texture = ExtResource( 2 )
