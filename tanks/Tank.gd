@@ -39,6 +39,7 @@ func change_health():
 	
 func explode():
 	alive = false
+	can_shoot = false
 	$CollisionShape2D.disabled = true
 	$Turret.hide()
 	$Explosion.show()
@@ -61,3 +62,4 @@ func _on_GunTimer_timeout():
 
 func _on_Explosion_animation_finished():
 	queue_free()
+	emit_signal("dead")

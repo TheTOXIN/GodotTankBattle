@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://terrain/terrain_tiles.tres" type="TileSet" id=1]
 [ext_resource path="res://tanks/Player.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://tanks/Enemy.tscn" type="PackedScene" id=4]
 [ext_resource path="res://UI/HUD.tscn" type="PackedScene" id=5]
 [ext_resource path="res://tanks/EnemyTurret.tscn" type="PackedScene" id=6]
+[ext_resource path="res://obstacles/Obstacle.tscn" type="PackedScene" id=7]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -43,6 +44,17 @@ detect_radius = 500
 
 [node name="EnemyTurret" parent="." instance=ExtResource( 6 )]
 position = Vector2( 871, 364 )
+
+[node name="Obstacles" type="Node2D" parent="."]
+
+[node name="Obstacle" parent="Obstacles" instance=ExtResource( 7 )]
+position = Vector2( 516, 254 )
+type = 10
+
+[node name="Obstacle2" parent="Obstacles" instance=ExtResource( 7 )]
+position = Vector2( 865, 162 )
+rotation = 2.20669
+type = 15
 
 [connection signal="dead" from="Player" to="." method="_on_Player_dead"]
 [connection signal="health_changed" from="Player" to="HUD" method="_on_Player_health_changed"]
