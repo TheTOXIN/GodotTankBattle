@@ -22,3 +22,6 @@ func control(delta):
 		
 	if Input.is_action_just_pressed("click"):
 		shoot()
+		
+	position.x = clamp(position.x, $Camera2D.limit_left, $Camera2D.limit_right)
+	position.y = clamp(position.y, $Camera2D.limit_top, $Camera2D.limit_bottom)

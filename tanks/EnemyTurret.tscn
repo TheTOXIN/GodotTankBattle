@@ -13,7 +13,7 @@ Bullet = ExtResource( 3 )
 max_speed = 0
 gun_cooldown = 0.25
 turret_speed = 5.0
-detect_radius = 300
+detect_radius = 500
 
 [node name="Body" parent="." index="0"]
 region_rect = Rect2( 532, 130, 56, 56 )

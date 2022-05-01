@@ -44,6 +44,7 @@ detect_radius = 500
 [node name="EnemyTurret" parent="." instance=ExtResource( 6 )]
 position = Vector2( 871, 364 )
 
+[connection signal="dead" from="Player" to="." method="_on_Player_dead"]
 [connection signal="health_changed" from="Player" to="HUD" method="_on_Player_health_changed"]
 [connection signal="shoot" from="Player" to="." method="_on_Tank_shoot"]
 [connection signal="shoot" from="Paths/Path2D/PathFollow2D/Enemy" to="." method="_on_Tank_shoot"]

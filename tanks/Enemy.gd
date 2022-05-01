@@ -9,8 +9,9 @@ var target: Node2D = null
 var speed = 0
 
 func _ready():
-	$DetectRadius/CollisionShape2D.shape = CapsuleShape2D.new()
-	$DetectRadius/CollisionShape2D.shape.radius = detect_radius
+	#TODO BLYAT detect_radius
+	$DetectRadius/CollisionShape2D.shape = CircleShape2D.new()
+	$DetectRadius/CollisionShape2D.shape.radius = 400
 
 func _process(delta):
 	if target:
@@ -25,15 +26,15 @@ func _process(delta):
 			shoot()
 		
 func control(delta):
-	if $LookHead1.is_colliding() or $LookHead2.is_colliding():
-		speed = lerp(speed, 0, 0.1)
-	else: 
-		speed = lerp(speed, max_speed, 0.05)
-	
 	if parent is PathFollow2D:
+		if $LookHead1.is_colliding() or $LookHead2.is_colliding():
+			speed = lerp(speed, 0, 0.1)
+		else: 
+			speed = lerp(speed, max_speed, 0.05)
 		parent.offset += speed * delta
 		position = Vector2.ZERO
 	else:
+		#other movement
 		pass
 
 func _on_DetectRadius_body_entered(body):

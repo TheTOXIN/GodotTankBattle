@@ -18,3 +18,6 @@ func _on_Tank_shoot(bullet, _pos, _dir):
 	var b = bullet.instance()
 	add_child(b)
 	b.start(_pos, _dir)
+	
+func _on_Player_dead():
+	get_tree().reload_current_scene()
