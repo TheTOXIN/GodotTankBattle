@@ -16,12 +16,12 @@ particles_anim_v_frames = 1
 particles_anim_loop = false
 
 [sub_resource type="Curve" id=4]
-_data = [ Vector2( 0, 0.1125 ), 0.0, -0.0897462, 0, 0, Vector2( 1, 0.494318 ), 0.0, 0.0, 0, 0 ]
+_data = [ Vector2( 0, 0.160227 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.505682 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="CurveTexture" id=5]
 curve = SubResource( 4 )
 
-[sub_resource type="ParticlesMaterial" id=2]
+[sub_resource type="ParticlesMaterial" id=6]
 flag_disable_z = true
 gravity = Vector3( 0, 0, 0 )
 orbit_velocity = 0.0
@@ -46,10 +46,10 @@ position = Vector2( 14, 0 )
 shape = SubResource( 1 )
 
 [node name="Trail" type="Particles2D" parent="." index="4"]
+show_behind_parent = true
 material = SubResource( 3 )
 amount = 30
 lifetime = 0.4
-speed_scale = 0.0
 local_coords = false
-process_material = SubResource( 2 )
+process_material = SubResource( 6 )
 texture = ExtResource( 4 )
