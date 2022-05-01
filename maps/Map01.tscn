@@ -27,6 +27,7 @@ tile_data = PoolIntArray( -1, 20, 0, -65536, 17, 0, -65535, 17, 0, -65534, 17, 0
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 178, 167 )
+ammo = 0
 
 [node name="Paths" type="Node2D" parent="."]
 
@@ -75,8 +76,13 @@ type = 19
 [node name="Items" type="Node2D" parent="."]
 
 [node name="Pickup" parent="Items" instance=ExtResource( 9 )]
-position = Vector2( 475, 356 )
+position = Vector2( 475, 449 )
+type = 1
 
+[node name="Pickup2" parent="Items" instance=ExtResource( 9 )]
+position = Vector2( 478, 65 )
+
+[connection signal="ammo_changed" from="Player" to="HUD" method="_on_Player_ammo_changed"]
 [connection signal="dead" from="Player" to="." method="_on_Player_dead"]
 [connection signal="health_changed" from="Player" to="HUD" method="_on_Player_health_changed"]
 [connection signal="shoot" from="Player" to="." method="_on_Tank_shoot"]

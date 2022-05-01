@@ -5,6 +5,9 @@ var bar_green = preload("res://assets/UI/barHorizontal_green_mid 200.png")
 var bar_yellow = preload("res://assets/UI/barHorizontal_yellow_mid 200.png")
 var bar_texture
 
+func _on_Player_ammo_changed(value):
+	$Margin/Container/AmmoGuage.value = value
+	
 func _on_Player_health_changed(value):
 	bar_texture = bar_green
 	

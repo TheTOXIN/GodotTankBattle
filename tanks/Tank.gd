@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 signal health_changed
+signal ammo_changed
 signal dead 
 signal shoot
 
@@ -13,6 +14,9 @@ export (int) var max_health
 export (int) var gun_shots = 1
 export (float, 0, 1.5) var gun_spread = 0
 
+export (int) var max_ammo = 20
+export (int) var ammo = -1 setget set_ammo
+
 var velocity = Vector2()
 var can_shoot = true
 var alive = true
@@ -24,6 +28,7 @@ func _ready():
 	
 	health = max_health
 	change_health()
+	change_ammo()
 	
 func _physics_process(delta):
 	if not alive:
@@ -44,6 +49,14 @@ func heal(amount):
 func change_health():
 	emit_signal("health_changed", health * 100 / max_health)
 	
+func set_ammo(value):
+	ammo = clamp(value, -1, max_ammo)
+	print(ammo)
+	change_ammo()
+	
+func change_ammo():
+	emit_signal("ammo_changed", ammo * 100 / max_ammo)
+
 func explode():
 	alive = false
 	can_shoot = false
@@ -54,8 +67,10 @@ func explode():
 	
 func shoot(num = 1, spread = 0, target = null):
 	#TODO check obstacles ray tracing
-	if can_shoot:
+	if can_shoot and ammo != 0:
 		can_shoot = false
+		#TODO может не сработать проверка на ноль если чило не кратно 
+		self.ammo -= num 
 		$GunTimer.start()
 		var dir = Vector2.RIGHT.rotated($Turret.global_rotation)
 		var pos = $Turret/Muzzle.global_position

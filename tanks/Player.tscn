@@ -18,6 +18,7 @@ max_speed = 200
 rotation_speed = 1.0
 gun_cooldown = 0.5
 max_health = 100
+ammo = 10
 
 [node name="Body" parent="." index="0"]
 texture = ExtResource( 2 )
