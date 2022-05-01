@@ -13,11 +13,16 @@ var icon_textures = {
 func _ready():
 	$Icon.texture = icon_textures[type]
 
+#TODO WTF
 func _on_Pickup_body_entered(body):
 	match type:
 		Items.health:
 			if body.has_method('heal'):
-				body.heal(int(rand_range(amount.x, amount.y)))
+				var t = int(rand_range(amount.x, amount.y))
+				print(t)
+				body.heal(t)
 		Items.ammo:
-			body.ammo += int(rand_range(amount.x, amount.y))
+			var t = int(rand_range(amount.x, amount.y))
+			print(t)
+			body.ammo += t
 	queue_free()

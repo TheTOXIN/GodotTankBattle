@@ -51,7 +51,6 @@ func change_health():
 	
 func set_ammo(value):
 	ammo = clamp(value, -1, max_ammo)
-	print(ammo)
 	change_ammo()
 	
 func change_ammo():

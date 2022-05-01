@@ -27,7 +27,6 @@ tile_data = PoolIntArray( -1, 20, 0, -65536, 17, 0, -65535, 17, 0, -65534, 17, 0
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 178, 167 )
-ammo = 0
 
 [node name="Paths" type="Node2D" parent="."]
 
@@ -55,7 +54,6 @@ position = Vector2( 539, 243 )
 rotation = -2.18088
 Bullet = ExtResource( 8 )
 gun_cooldown = 1.0
-turret_speed = 0.0
 detect_radius = 250
 
 [node name="Obstacles" type="Node2D" parent="."]
