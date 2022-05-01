@@ -36,6 +36,10 @@ func take_damage(amount):
 	change_health()
 	if health <= 0:
 		explode()
+		
+func heal(amount):
+	health = clamp(health + amount, 0, max_health)
+	change_health()
 	
 func change_health():
 	emit_signal("health_changed", health * 100 / max_health)

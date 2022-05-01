@@ -33,7 +33,7 @@ anim_speed = 1.0
 script = ExtResource( 3 )
 speed = 400
 damage = 20
-lifetime = 10.0
+lifetime = 5.0
 steer_force = 25.0
 
 [node name="Sprite" parent="." index="0"]

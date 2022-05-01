@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://terrain/terrain_tiles.tres" type="TileSet" id=1]
 [ext_resource path="res://tanks/Player.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://tanks/EnemyTurret.tscn" type="PackedScene" id=6]
 [ext_resource path="res://obstacles/Obstacle.tscn" type="PackedScene" id=7]
 [ext_resource path="res://bullets/MissileBullet.tscn" type="PackedScene" id=8]
+[ext_resource path="res://items/Pickup.tscn" type="PackedScene" id=9]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -70,6 +71,11 @@ type = 15
 [node name="Obstacle3" parent="Obstacles" instance=ExtResource( 7 )]
 position = Vector2( 162, 354 )
 type = 19
+
+[node name="Items" type="Node2D" parent="."]
+
+[node name="Pickup" parent="Items" instance=ExtResource( 9 )]
+position = Vector2( 475, 356 )
 
 [connection signal="dead" from="Player" to="." method="_on_Player_dead"]
 [connection signal="health_changed" from="Player" to="HUD" method="_on_Player_health_changed"]
