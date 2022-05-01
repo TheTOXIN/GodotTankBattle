@@ -18,7 +18,6 @@ max_speed = 175
 gun_cooldown = 0.5
 max_health = 50
 turret_speed = 1.0
-detect_radius = 400
 
 [node name="Body" parent="." index="0"]
 texture = ExtResource( 2 )

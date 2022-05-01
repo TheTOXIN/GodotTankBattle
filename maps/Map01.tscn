@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://terrain/terrain_tiles.tres" type="TileSet" id=1]
 [ext_resource path="res://tanks/Player.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://UI/HUD.tscn" type="PackedScene" id=5]
 [ext_resource path="res://tanks/EnemyTurret.tscn" type="PackedScene" id=6]
 [ext_resource path="res://obstacles/Obstacle.tscn" type="PackedScene" id=7]
+[ext_resource path="res://bullets/MissileBullet.tscn" type="PackedScene" id=8]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -38,26 +39,41 @@ position = Vector2( 119.064, 64 )
 rotation = 3.11802
 
 [node name="Enemy" parent="Paths/Path2D/PathFollow2D" instance=ExtResource( 4 )]
-detect_radius = 500
+detect_radius = 400
 
 [node name="HUD" parent="." instance=ExtResource( 5 )]
 
-[node name="EnemyTurret" parent="." instance=ExtResource( 6 )]
-position = Vector2( 871, 364 )
+[node name="EnemyTurrent" parent="." instance=ExtResource( 6 )]
+position = Vector2( 863, 365 )
+gun_shots = 3
+gun_spread = 0.1
+
+[node name="EnemyMissile" parent="." instance=ExtResource( 4 )]
+position = Vector2( 539, 243 )
+rotation = -2.18088
+Bullet = ExtResource( 8 )
+gun_cooldown = 1.0
+turret_speed = 0.0
+detect_radius = 250
 
 [node name="Obstacles" type="Node2D" parent="."]
 
 [node name="Obstacle" parent="Obstacles" instance=ExtResource( 7 )]
-position = Vector2( 516, 254 )
+position = Vector2( 473, 258 )
 type = 10
 
 [node name="Obstacle2" parent="Obstacles" instance=ExtResource( 7 )]
 position = Vector2( 865, 162 )
-rotation = 2.20669
+rotation = 2.23563
 type = 15
+
+[node name="Obstacle3" parent="Obstacles" instance=ExtResource( 7 )]
+position = Vector2( 162, 354 )
+type = 19
 
 [connection signal="dead" from="Player" to="." method="_on_Player_dead"]
 [connection signal="health_changed" from="Player" to="HUD" method="_on_Player_health_changed"]
 [connection signal="shoot" from="Player" to="." method="_on_Tank_shoot"]
 [connection signal="shoot" from="Paths/Path2D/PathFollow2D/Enemy" to="." method="_on_Tank_shoot"]
-[connection signal="shoot" from="EnemyTurret" to="." method="_on_Tank_shoot"]
+[connection signal="shoot" from="EnemyTurrent" to="." method="_on_Tank_shoot"]
+[connection signal="shoot" from="EnemyMissile" to="." method="_on_Tank_shoot"]

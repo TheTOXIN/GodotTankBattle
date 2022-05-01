@@ -11,7 +11,7 @@ var speed = 0
 func _ready():
 	#TODO BLYAT detect_radius
 	$DetectRadius/CollisionShape2D.shape = CircleShape2D.new()
-	$DetectRadius/CollisionShape2D.shape.radius = 400
+	$DetectRadius/CollisionShape2D.shape.radius = detect_radius
 
 func _process(delta):
 	if target:
@@ -23,7 +23,7 @@ func _process(delta):
 		
 		#dot product vectors
 		if target_dir.dot(current_dir) > 0.9:
-			shoot()
+			shoot(gun_shots, gun_spread, target)
 		
 func control(delta):
 	if parent is PathFollow2D:

@@ -2,7 +2,7 @@
 
 [ext_resource path="res://tanks/Enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://tanks/EnemyTurret.gd" type="Script" id=2]
-[ext_resource path="res://bullets/EnemyBulletTurret.tscn" type="PackedScene" id=3]
+[ext_resource path="res://bullets/TurretBullet.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 35.0
