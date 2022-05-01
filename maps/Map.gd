@@ -4,6 +4,7 @@ func _ready():
 	set_camera_limits()
 	var cursor = load("res://assets/UI/crossair_white.png")
 	Input.set_custom_mouse_cursor(cursor, Input.CURSOR_ARROW, Vector2(16, 16))
+	$Player.map = $Ground
 	
 func set_camera_limits():
 	var map_limits = $Ground.get_used_rect()

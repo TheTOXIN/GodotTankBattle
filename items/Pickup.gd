@@ -10,19 +10,17 @@ var icon_textures = {
 	Items.ammo: preload("res://assets/effects/ammo_machinegun.png")
 }
 
+var rand = RandomNumberGenerator.new()
+
 func _ready():
 	$Icon.texture = icon_textures[type]
-
-#TODO WTF
+	rand.randomize()
+	
 func _on_Pickup_body_entered(body):
 	match type:
 		Items.health:
 			if body.has_method('heal'):
-				var t = int(rand_range(amount.x, amount.y))
-				print(t)
-				body.heal(t)
+				body.heal(rand.randi_range(amount.x, amount.y))
 		Items.ammo:
-			var t = int(rand_range(amount.x, amount.y))
-			print(t)
-			body.ammo += t
+			body.ammo += rand.randi_range(amount.x, amount.y)
 	queue_free()

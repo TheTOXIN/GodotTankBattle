@@ -10,7 +10,8 @@ func control(delta):
 		rot_dir += 1
 	if Input.is_action_pressed("turn_left"):
 		rot_dir -= 1
-		
+	
+	#TODO use tile offroad
 	rotation += rotation_speed * rot_dir * delta
 	
 	velocity = Vector2.ZERO

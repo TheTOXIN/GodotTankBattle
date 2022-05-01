@@ -14,8 +14,8 @@ collision_layer = 2
 collision_mask = 5
 script = ExtResource( 3 )
 Bullet = ExtResource( 4 )
-max_speed = 200
-rotation_speed = 1.0
+max_speed = 250
+rotation_speed = 1.5
 gun_cooldown = 0.5
 max_health = 100
 ammo = 10
@@ -28,7 +28,7 @@ region_rect = Rect2( 308, 263, 80, 83 )
 [node name="CollisionShape2D" parent="." index="1"]
 shape = SubResource( 1 )
 
-[node name="Turret" parent="." index="2"]
+[node name="Turret" parent="." index="3"]
 texture = ExtResource( 2 )
 offset = Vector2( 20, 0 )
 region_enabled = true
