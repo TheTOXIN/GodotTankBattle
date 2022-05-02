@@ -2,6 +2,7 @@ extends "res://tanks/Tank.gd"
 
 export (float) var turret_speed
 export (int) var detect_radius 
+export (float) var accuracy_shoot = 0.9
 
 onready var parent = get_parent()
 
@@ -9,7 +10,6 @@ var target: Node2D = null
 var speed = 0
 
 func _ready():
-	#TODO BLYAT detect_radius
 	$DetectRadius/CollisionShape2D.shape = CircleShape2D.new()
 	$DetectRadius/CollisionShape2D.shape.radius = detect_radius
 
@@ -19,10 +19,9 @@ func _process(delta):
 		var current_dir = Vector2.RIGHT.rotated($Turret.global_rotation)
 		
 		$Turret.global_rotation = current_dir.linear_interpolate(target_dir, turret_speed * delta).angle()
-		#TODO set default
 		
 		#dot product vectors
-		if target_dir.dot(current_dir) > 0.9:
+		if target_dir.dot(current_dir) > accuracy_shoot:
 			shoot(gun_shots, gun_spread, target)
 		
 func control(delta):

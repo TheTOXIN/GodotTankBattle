@@ -24,9 +24,9 @@ func explode():
 	$Explosion.play("smoke")
 
 func seek():
-	#TODO try direct_to
+	#same operations
 	var desired: Vector2 = (target.position - position).normalized() * speed
-	var steer: Vector2 = (desired - velocity).normalized() * steer_force
+	var steer: Vector2 = velocity.direction_to(desired) * steer_force
 	return steer
 
 func _process(delta):
@@ -34,7 +34,7 @@ func _process(delta):
 		acceleration += seek()
 		velocity += acceleration * delta
 		velocity = velocity.clamped(speed)
-		rotation = velocity.angle() #TODO why
+		rotation = velocity.angle()
 	position += velocity * delta
 
 func _on_Bullet_body_entered(body):
