@@ -18,7 +18,8 @@ func _process(delta):
 		var target_dir = (target.global_position - global_position).normalized()
 		var current_dir = Vector2.RIGHT.rotated($Turret.global_rotation)
 		
-		$Turret.global_rotation = current_dir.linear_interpolate(target_dir, turret_speed * delta).angle()
+		var v = current_dir.linear_interpolate(target_dir, turret_speed * delta);
+		$Turret.global_rotation = v.angle()
 		
 		#dot product vectors
 		if target_dir.dot(current_dir) > accuracy_shoot:
