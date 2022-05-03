@@ -11,6 +11,10 @@ var hit_pos: Vector2 = Vector2.ZERO
 var target: Node2D = null
 var speed = 0
 
+#TODO 1 HOW RAY TO WROK
+#TODO 2 NOW DROW RAY WHEN EXITED
+#TODO 3 BROBLEMS WITH MOVE TANKS RAY
+
 func _ready():
 	$DetectRadius/CollisionShape2D.shape = CircleShape2D.new()
 	$DetectRadius/CollisionShape2D.shape.radius = detect_radius
@@ -19,7 +23,7 @@ func _draw():
 	if Globals.debag_mode:
 		draw_circle(Vector2.ZERO, detect_radius, Color(0, 0, 0, 0.25))
 		if target:
-			var v = (hit_pos - position).rotated(-rotation)
+			var v = (hit_pos - global_position).rotated(-global_rotation)
 			draw_circle(v, 5, Color.red)
 			draw_line(Vector2.ZERO, v, Color.red, 3)
 			
@@ -39,16 +43,15 @@ func _process(delta):
 	update()
 
 func targeting(delta):
-#	var target_dir = (target.global_position - global_position).normalized()
-#	var current_dir = Vector2.RIGHT.rotated($Turret.global_rotation)
-		
-#	var v = current_dir.linear_interpolate(target_dir, turret_speed * delta)
-#	$Turret.global_rotation = v.angle()
-		
+	var target_dir = (target.global_position - global_position).normalized()
+	var current_dir = Vector2.RIGHT.rotated($Turret.global_rotation)
+##		
+	var v = current_dir.linear_interpolate(target_dir, turret_speed * delta)
+	$Turret.global_rotation = v.angle()
+
 	#dot product vectors
-#	if target_dir.dot(current_dir) > accuracy_shoot:
-	rotation = (target.position - position).angle()
-	shoot(gun_shots, gun_spread, target)
+	if target_dir.dot(current_dir) > accuracy_shoot:
+		shoot(gun_shots, gun_spread, target)
 
 func control(delta):
 	if parent is PathFollow2D:

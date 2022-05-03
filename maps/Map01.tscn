@@ -41,14 +41,12 @@ rotation = 3.11802
 
 [node name="Enemy" parent="Paths/Path2D/PathFollow2D" instance=ExtResource( 4 )]
 offroad_friction = 0.0
-disable = true
 detect_radius = 400
 
 [node name="HUD" parent="." instance=ExtResource( 5 )]
 
 [node name="EnemyTurrent" parent="." instance=ExtResource( 6 )]
 position = Vector2( 863, 365 )
-collision_mask = 10
 offroad_friction = 0.75
 gun_shots = 3
 gun_spread = 0.1
@@ -60,6 +58,7 @@ rotation = -2.18088
 Bullet = ExtResource( 8 )
 gun_cooldown = 1.0
 offroad_friction = 0.0
+disable = true
 detect_radius = 250
 
 [node name="Obstacles" type="Node2D" parent="."]
@@ -69,7 +68,7 @@ position = Vector2( 421, 252 )
 type = 10
 
 [node name="Obstacle2" parent="Obstacles" instance=ExtResource( 7 )]
-position = Vector2( 865, 162 )
+position = Vector2( 841, 158 )
 rotation = 2.23563
 type = 14
 

@@ -21,7 +21,7 @@ region_rect = Rect2( 532, 130, 56, 56 )
 [node name="CollisionShape2D" parent="." index="1"]
 shape = SubResource( 1 )
 
-[node name="Turret" parent="." index="2"]
+[node name="Turret" parent="." index="3"]
 region_rect = Rect2( 271, 60, 64, 28 )
 
 [node name="Flash" parent="Turret" index="1"]
@@ -34,5 +34,5 @@ visible = false
 [node name="LookHead2" parent="." index="6"]
 visible = false
 
-[node name="Explosion" parent="." index="8"]
+[node name="Explosion" parent="." index="9"]
 scale = Vector2( 1, 1 )
