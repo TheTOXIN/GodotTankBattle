@@ -1,5 +1,6 @@
 extends Node
 
+var debag_mode = true
 var slow_terrain = [0, 10, 20, 30, 7, 8, 17, 18]
 var current_level = 0
 var levels = [

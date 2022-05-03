@@ -76,6 +76,8 @@ tracks/1/keys = {
 }
 
 [node name="Tank" type="KinematicBody2D"]
+collision_layer = 0
+collision_mask = 0
 script = ExtResource( 1 )
 offroad_friction = 0.75
 
