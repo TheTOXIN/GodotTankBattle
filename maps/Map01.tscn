@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://terrain/terrain_tiles.tres" type="TileSet" id=1]
 [ext_resource path="res://tanks/Player.tscn" type="PackedScene" id=2]
@@ -9,7 +9,6 @@
 [ext_resource path="res://obstacles/Obstacle.tscn" type="PackedScene" id=7]
 [ext_resource path="res://bullets/MissileBullet.tscn" type="PackedScene" id=8]
 [ext_resource path="res://items/Pickup.tscn" type="PackedScene" id=9]
-[ext_resource path="res://bullets/EnemyBullet.tscn" type="PackedScene" id=10]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -42,7 +41,6 @@ rotation = 3.11802
 
 [node name="Enemy" parent="Paths/Path2D/PathFollow2D" instance=ExtResource( 4 )]
 offroad_friction = 0.0
-disable = true
 detect_radius = 400
 
 [node name="HUD" parent="." instance=ExtResource( 5 )]
@@ -51,7 +49,6 @@ detect_radius = 400
 position = Vector2( 863, 365 )
 gun_shots = 3
 gun_spread = 0.1
-disable = true
 
 [node name="EnemyMissile" parent="." instance=ExtResource( 4 )]
 position = Vector2( 539, 243 )
@@ -60,7 +57,6 @@ Bullet = ExtResource( 8 )
 gun_cooldown = 1.5
 offroad_friction = 0.0
 max_ammo = 10
-disable = true
 detect_radius = 250
 
 [node name="Obstacles" type="Node2D" parent="."]
@@ -96,15 +92,6 @@ type = 1
 
 [node name="Pickup2" parent="Items" instance=ExtResource( 9 )]
 position = Vector2( 478, 65 )
-
-[node name="EnemyBullet" parent="." instance=ExtResource( 10 )]
-position = Vector2( 321, 174 )
-
-[node name="EnemyBullet2" parent="." instance=ExtResource( 10 )]
-position = Vector2( 361, 175 )
-
-[node name="EnemyBullet3" parent="." instance=ExtResource( 10 )]
-position = Vector2( 280, 174 )
 
 [connection signal="ammo_changed" from="Player" to="HUD" method="_on_Player_ammo_changed"]
 [connection signal="dead" from="Player" to="." method="_on_Player_dead"]

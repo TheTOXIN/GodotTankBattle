@@ -31,7 +31,7 @@ func seek():
 	var steer: Vector2 = velocity.direction_to(desired) * steer_force
 	return steer
 
-func take_damage():
+func take_damage(damage):
 	explode()
 
 func _process(delta):
@@ -43,7 +43,6 @@ func _process(delta):
 	position += velocity * delta
 
 func _on_Bullet_body_entered(body):
-	print("TEST")
 	if body == holder:
 		return
 	explode()
@@ -55,3 +54,8 @@ func _on_Lifetime_timeout():
 
 func _on_Explosion_animation_finished():
 	queue_free()
+
+func _on_Bullet_area_entered(area):
+	#dirty hack for ger area bullet damage 
+	if area.has_method('take_damage'):
+		area.take_damage(damage)
