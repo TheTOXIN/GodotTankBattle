@@ -40,7 +40,6 @@ position = Vector2( 119.064, 64 )
 rotation = 3.11802
 
 [node name="Enemy" parent="Paths/Path2D/PathFollow2D" instance=ExtResource( 4 )]
-disable = true
 detect_radius = 400
 
 [node name="HUD" parent="." instance=ExtResource( 5 )]
@@ -50,6 +49,7 @@ position = Vector2( 863, 365 )
 offroad_friction = 0.75
 gun_shots = 3
 gun_spread = 0.1
+disable = true
 
 [node name="EnemyMissile" parent="." instance=ExtResource( 4 )]
 position = Vector2( 539, 243 )

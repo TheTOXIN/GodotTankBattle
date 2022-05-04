@@ -60,9 +60,7 @@ func _on_Explosion_animation_finished():
 #dirty hack for area bullet damage
 #udp: its not working when multiply bullets with big collision :(
 func _on_Bullet_area_entered(area):
-	for s in shot_shell:
-		if s == area:
-			return
-	
+	if shot_shell.has(area):
+		return
 	if area.has_method('take_damage'):
 		area.take_damage(damage)

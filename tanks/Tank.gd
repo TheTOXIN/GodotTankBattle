@@ -85,28 +85,42 @@ func shoot(target_pos):
 		var dir = Vector2.RIGHT.rotated($Turret.global_rotation)
 		var pos = $Turret/Muzzle.global_position
 		if gun_shots > 1:
-			spawn_bullet_shell(pos, dir, target_pos)
+			var bullets = []
+			
+			for i in range(gun_shots):
+				bullets.append(Bullet.instance())
+			
+			for i in range(gun_shots):
+				bullets[i].shot_shell = bullets
+				var a = -gun_spread + i * (2 * gun_spread) / (gun_shots - 1)
+				var dir_rotate = dir.rotated(a)
+				var bullet = Bullet.instance()
+				emit_signal('shoot', bullets[i], pos, dir_rotate, target_pos, self)
 		else:
-			spawn_bullet(pos, dir, target_pos)
+			var bullet = Bullet.instance()
+			emit_signal('shoot', bullet, pos, dir, target_pos, self)
 		$AnimationPlayer.play("muzzle_flash")
 		
 func spawn_bullet_shell(pos, dir, target_pos):
-	var bullets = []
-	
-	for i in range(gun_shots):
-		bullets.append(Bullet.instance())
-		
-	for i in range(gun_shots):
-		bullets[i].shot_shell = bullets
-		
-		var a = -gun_spread + i * (2 * gun_spread) / (gun_shots - 1)
-		var dir_rotate = dir.rotated(a)
-		
-		emit_signal('shoot', bullets[i], pos, dir, target_pos, self)
+#	var bullets = []
+#
+#	for i in range(gun_shots):
+#		bullets.append(Bullet.instance())
+#
+#	for i in range(gun_shots):
+#		bullets[i].shot_shell = bullets
+#
+#		var a = -gun_spread + i * (2 * gun_spread) / (gun_shots - 1)
+#		var dir_rotate = dir.rotated(a)
+#
+##		emit_signal('shoot', Bullet, pos, dir.rotated(a), target_pos, self)
+#		emit_signal('shoot', bullets[i], pos, dir, target_pos, self)
+		pass
 
 func spawn_bullet(pos, dir, target_pos):
-	var bullet = Bullet.instance()
-	emit_signal('shoot', bullet, pos, dir, target_pos, self)
+#	var bullet = Bullet.instance()
+#	emit_signal('shoot', bullet, pos, dir, target_pos, self)
+	pass
 	
 func control(delta):
 	pass
