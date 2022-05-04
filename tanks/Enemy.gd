@@ -35,7 +35,7 @@ func _process(delta):
 	
 	var target_extents = collision_shape.shape.extents - Vector2(5, 5)
 	var shape_rotate  = collision_shape.global_rotation
-
+	#TODO TO METHOD
 	var nw = target.position - target_extents.rotated(shape_rotate)
 	var se = target.position + target_extents.rotated(shape_rotate)
 	var ne = target.position + Vector2(target_extents.x, -target_extents.y).rotated(shape_rotate)
@@ -59,7 +59,7 @@ func targeting(target_pos, delta):
 
 	#dot product vectors
 	if target_dir.dot(current_dir) > accuracy_shoot:
-		shoot(gun_shots, gun_spread, target_pos)
+		shoot(target_pos)
 
 func control(delta):
 	if parent is PathFollow2D:

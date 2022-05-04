@@ -9,6 +9,7 @@ var acceleration = Vector2.ZERO
 var velocity = Vector2.ZERO
 var target_pos = null
 var holder: Node2D = null
+var shot_shell = []
 
 func start(_position: Vector2, _direction: Vector2, _target_pos, _holder):
 	position = _position
@@ -59,5 +60,9 @@ func _on_Explosion_animation_finished():
 #dirty hack for area bullet damage
 #udp: its not working when multiply bullets with big collision :(
 func _on_Bullet_area_entered(area):
+	for s in shot_shell:
+		if s == area:
+			return
+	
 	if area.has_method('take_damage'):
 		area.take_damage(damage)

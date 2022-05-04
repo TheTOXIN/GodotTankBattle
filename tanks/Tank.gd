@@ -76,25 +76,37 @@ func explode():
 	$Explosion.show()
 	$Explosion.play()
 	
-func shoot(num, spread, target_pos):
+func shoot(target_pos):
 	if can_shoot and ammo != 0:
 		can_shoot = false
 		#TODO может не сработать проверка на ноль если чило не кратно 
-		self.ammo -= num 
+		self.ammo -= gun_shots 
 		$GunTimer.start()
 		var dir = Vector2.RIGHT.rotated($Turret.global_rotation)
 		var pos = $Turret/Muzzle.global_position
-		if num > 1:
-			for i in range(num):
-				var a = -spread + i * (2 * spread) / (num - 1)
-				var dir_rotate = dir.rotated(a)
-				spawn_bullet(pos, dir_rotate, target_pos)
+		if gun_shots > 1:
+			spawn_bullet_shell(pos, dir, target_pos)
 		else:
 			spawn_bullet(pos, dir, target_pos)
 		$AnimationPlayer.play("muzzle_flash")
 		
+func spawn_bullet_shell(pos, dir, target_pos):
+	var bullets = []
+	
+	for i in range(gun_shots):
+		bullets.append(Bullet.instance())
+		
+	for i in range(gun_shots):
+		bullets[i].shot_shell = bullets
+		
+		var a = -gun_spread + i * (2 * gun_spread) / (gun_shots - 1)
+		var dir_rotate = dir.rotated(a)
+		
+		emit_signal('shoot', bullets[i], pos, dir, target_pos, self)
+
 func spawn_bullet(pos, dir, target_pos):
-	emit_signal('shoot', Bullet, pos, dir, target_pos, self)
+	var bullet = Bullet.instance()
+	emit_signal('shoot', bullet, pos, dir, target_pos, self)
 	
 func control(delta):
 	pass

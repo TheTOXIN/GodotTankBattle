@@ -22,7 +22,7 @@ func control(delta):
 		velocity = (Vector2.LEFT * max_speed / 2).rotated(rotation)
 		
 	if Input.is_action_just_pressed("click") or Input.is_action_pressed("ui_select"):
-		shoot(1, 0, null)
+		shoot(null)
 		
 	position.x = clamp(position.x, $Camera2D.limit_left, $Camera2D.limit_right)
 	position.y = clamp(position.y, $Camera2D.limit_top, $Camera2D.limit_bottom)

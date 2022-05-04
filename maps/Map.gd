@@ -16,9 +16,8 @@ func set_camera_limits():
 	$Player/Camera2D.limit_bottom = map_limits.end.y * map_cell_size.y
 
 func _on_Tank_shoot(bullet, _pos, _dir, target_pos, holder):
-	var b = bullet.instance()
-	add_child(b)
-	b.start(_pos, _dir, target_pos, holder)
+	add_child(bullet)
+	bullet.start(_pos, _dir, target_pos, holder)
 	
 func _on_Player_dead():
 	Globals.restart()
