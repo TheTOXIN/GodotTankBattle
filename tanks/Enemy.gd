@@ -11,10 +11,6 @@ var hit_pos: Vector2 = Vector2.ZERO
 var target: Node2D = null
 var speed = 0
 
-#TODO 1 HOW RAY TO WROK
-#TODO 2 NOW DROW RAY WHEN EXITED
-#TODO 3 BROBLEMS WITH MOVE TANKS RAY
-
 func _ready():
 	$DetectRadius/CollisionShape2D.shape = CircleShape2D.new()
 	$DetectRadius/CollisionShape2D.shape.radius = detect_radius
@@ -32,7 +28,7 @@ func _process(delta):
 		return
 		
 	var result = get_world_2d().direct_space_state.intersect_ray(
-		position, target.position, [self], collision_mask
+		global_position, target.global_position, [self], collision_mask
 	)
 
 	if result:

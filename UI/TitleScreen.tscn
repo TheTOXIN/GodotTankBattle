@@ -21,24 +21,12 @@ font_data = ExtResource( 1 )
 [sub_resource type="Animation" id=4]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("Title:rect_position")
-tracks/0/interp = 2
+tracks/0/path = NodePath("PlayMessage:rect_scale")
+tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = false
+tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 0, 200 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("PlayMessage:rect_scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
@@ -82,9 +70,8 @@ tile_data = PoolIntArray( 0, 0, 0, 1, 1, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_top = 200.0
-margin_right = 1024.0
-margin_bottom = 300.0
+margin_top = -102.0
+margin_bottom = -2.0
 custom_fonts/font = SubResource( 1 )
 text = "TANK BATTLE"
 align = 1

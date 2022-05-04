@@ -7,7 +7,7 @@
 [ext_resource path="res://UI/UnitDisplay.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 40, 33.5 )
+extents = Vector2( 36, 33.5 )
 
 [node name="Enemy" instance=ExtResource( 1 )]
 collision_layer = 4

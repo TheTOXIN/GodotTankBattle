@@ -9,7 +9,7 @@ extents = Vector2( 15.375, 12 )
 
 [node name="PlayerBullet" instance=ExtResource( 1 )]
 collision_layer = 8
-collision_mask = 5
+collision_mask = 13
 script = ExtResource( 2 )
 speed = 800
 damage = 10
@@ -17,6 +17,7 @@ lifetime = 1.0
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 3 )
+region_rect = Rect2( 388, 298, 32, 24 )
 
 [node name="CollisionShape2D" parent="." index="1"]
 position = Vector2( -0.375, 0 )

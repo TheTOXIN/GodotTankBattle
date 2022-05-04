@@ -33,9 +33,9 @@ anim_speed = 1.0
 collision_layer = 8
 collision_mask = 3
 script = ExtResource( 3 )
-speed = 400
-damage = 20
-lifetime = 5.0
+speed = 300
+damage = 25
+lifetime = 3.0
 steer_force = 25.0
 
 [node name="Sprite" parent="." index="0"]
