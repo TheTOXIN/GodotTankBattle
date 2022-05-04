@@ -7,8 +7,8 @@ export (float) var accuracy_shoot = 0.9
 
 onready var parent = get_parent()
 
-var hit_pos: Vector2 = Vector2.ZERO
 var target: Node2D = null
+var hit_pos: Array = []
 var speed = 0
 
 func _ready():
@@ -19,27 +19,39 @@ func _draw():
 	if Globals.debag_mode:
 		draw_circle(Vector2.ZERO, detect_radius, Color(0, 0, 0, 0.25))
 		if target:
-			var v = (hit_pos - global_position).rotated(-global_rotation)
-			draw_circle(v, 5, Color.red)
-			draw_line(Vector2.ZERO, v, Color.red, 3)
+			for hit in hit_pos:
+				var v = (hit - global_position).rotated(-global_rotation)
+				draw_circle(v, 5, Color.red)
+				draw_line(Vector2.ZERO, v, Color.red, 3)
 			
 func _process(delta):
 	if !target or disable:
 		return
-		
-	var result = get_world_2d().direct_space_state.intersect_ray(
-		global_position, target.global_position, [self], collision_mask
-	)
+	
+	hit_pos = []
+	
+	var space_state = get_world_2d().direct_space_state;
+	var collision_shape = target.get_node('CollisionShape2D')
+	
+	var target_extents = collision_shape.shape.extents - Vector2(5, 5)
+	var shape_rotate  = collision_shape.global_rotation
 
-	if result:
-		hit_pos = result.position
-		if result.collider.name == "Player":
-			targeting(delta)
-			
+	var nw = target.position - target_extents.rotated(shape_rotate)
+	var se = target.position + target_extents.rotated(shape_rotate)
+	var ne = target.position + Vector2(target_extents.x, -target_extents.y).rotated(shape_rotate)
+	var sw = target.position + Vector2(-target_extents.x, target_extents.y).rotated(shape_rotate)
+	
+	for target_pos in [target.position, nw, se, ne, sw]:
+		var result = space_state.intersect_ray(position, target_pos, [self], collision_mask)
+		if result:
+			hit_pos.append(result.position)
+			if result.collider.name == "Player":
+				targeting(target_pos, delta)
+				break #oprimze ray cast
 	update()
 
-func targeting(delta):
-	var target_dir = (target.global_position - global_position).normalized()
+func targeting(target_pos, delta):
+	var target_dir = (target_pos - global_position).normalized()
 	var current_dir = Vector2.RIGHT.rotated($Turret.global_rotation)
 ##		
 	var v = current_dir.linear_interpolate(target_dir, turret_speed * delta)

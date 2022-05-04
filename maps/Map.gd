@@ -1,5 +1,5 @@
 extends Node2D
-#TODO EXPLODE BULLETS BY BULLETS
+
 func _ready():
 	set_camera_limits()
 	var cursor = load("res://assets/UI/crossair_white.png")

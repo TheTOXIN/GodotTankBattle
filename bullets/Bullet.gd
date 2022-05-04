@@ -26,7 +26,7 @@ func explode():
 	$Explosion.play("smoke")
 
 func seek():
-	#same operations
+	#same operations TODO HMMMMMMMMMMMMM
 	var desired: Vector2 = (target.position - position).normalized() * speed
 	var steer: Vector2 = velocity.direction_to(desired) * steer_force
 	return steer
@@ -55,7 +55,8 @@ func _on_Lifetime_timeout():
 func _on_Explosion_animation_finished():
 	queue_free()
 
+#dirty hack for area bullet damage
+#udp: its not working when multiply bullets with big collision :(
 func _on_Bullet_area_entered(area):
-	#dirty hack for ger area bullet damage 
 	if area.has_method('take_damage'):
 		area.take_damage(damage)
