@@ -42,7 +42,7 @@ func _process(delta):
 	var sw = target.position + Vector2(-target_extents.x, target_extents.y).rotated(shape_rotate)
 	
 	for target_pos in [target.position, nw, se, ne, sw]:
-		var result = space_state.intersect_ray(position, target_pos, [self], collision_mask)
+		var result = space_state.intersect_ray(global_position, target_pos, [self], collision_mask)
 		if result:
 			hit_pos.append(result.position)
 			if result.collider.name == "Player":
