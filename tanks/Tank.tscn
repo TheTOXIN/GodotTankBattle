@@ -110,6 +110,5 @@ anims/RESET = SubResource( 1 )
 anims/init = SubResource( 2 )
 anims/muzzle_flash = SubResource( 3 )
 
-[connection signal="shoot" from="." to="." method="_on_Tank_shoot"]
 [connection signal="timeout" from="GunTimer" to="." method="_on_GunTimer_timeout"]
 [connection signal="animation_finished" from="Explosion" to="." method="_on_Explosion_animation_finished"]

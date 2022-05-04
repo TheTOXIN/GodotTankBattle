@@ -47,7 +47,6 @@ detect_radius = 400
 
 [node name="EnemyTurrent" parent="." instance=ExtResource( 6 )]
 position = Vector2( 863, 365 )
-offroad_friction = 0.75
 gun_shots = 3
 gun_spread = 0.1
 

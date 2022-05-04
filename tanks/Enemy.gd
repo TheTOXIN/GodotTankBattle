@@ -41,12 +41,12 @@ func _process(delta):
 	var ne = target.position + Vector2(target_extents.x, -target_extents.y).rotated(shape_rotate)
 	var sw = target.position + Vector2(-target_extents.x, target_extents.y).rotated(shape_rotate)
 	
-	for target_pos in [target.position, nw, se, ne, sw]:
-		var result = space_state.intersect_ray(global_position, target_pos, [self], collision_mask)
+	for check_pos in [target.position, nw, se, ne, sw]:
+		var result = space_state.intersect_ray(global_position, check_pos, [self], collision_mask)
 		if result:
 			hit_pos.append(result.position)
 			if result.collider.name == "Player":
-				targeting(target_pos, delta)
+				targeting(result.position, delta)
 				break #oprimze ray cast
 	update()
 
@@ -59,7 +59,7 @@ func targeting(target_pos, delta):
 
 	#dot product vectors
 	if target_dir.dot(current_dir) > accuracy_shoot:
-		shoot(gun_shots, gun_spread, target)
+		shoot(gun_shots, gun_spread, target_pos)
 
 func control(delta):
 	if parent is PathFollow2D:

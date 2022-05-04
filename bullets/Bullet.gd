@@ -7,14 +7,14 @@ export (float) var steer_force = 0
 
 var acceleration = Vector2.ZERO
 var velocity = Vector2.ZERO
-var target: Node2D = null
+var target_pos = null
 var holder: Node2D = null
 
-func start(_position: Vector2, _direction: Vector2, _target = null, _holder = null):
+func start(_position: Vector2, _direction: Vector2, _target_pos, _holder):
 	position = _position
 	rotation = _direction.angle()
 	velocity = _direction * speed
-	target = _target
+	target_pos = _target_pos
 	holder = _holder
 	$Lifetime.wait_time = lifetime
 	$Lifetime.start()
@@ -26,8 +26,9 @@ func explode():
 	$Explosion.play("smoke")
 
 func seek():
-	#same operations TODO HMMMMMMMMMMMMM
-	var desired: Vector2 = (target.position - position).normalized() * speed
+	#same operations 
+	#при воворотах снаряд может резко поменять направление
+	var desired: Vector2 = (target_pos - position).normalized() * speed
 	var steer: Vector2 = velocity.direction_to(desired) * steer_force
 	return steer
 
@@ -35,7 +36,7 @@ func take_damage(damage):
 	explode()
 
 func _process(delta):
-	if target:
+	if target_pos:
 		acceleration += seek()
 		velocity += acceleration * delta
 		velocity = velocity.clamped(speed)

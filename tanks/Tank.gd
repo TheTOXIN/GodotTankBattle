@@ -76,7 +76,7 @@ func explode():
 	$Explosion.show()
 	$Explosion.play()
 	
-func shoot(num = 1, spread = 0, target = null):
+func shoot(num, spread, target_pos):
 	if can_shoot and ammo != 0:
 		can_shoot = false
 		#TODO может не сработать проверка на ноль если чило не кратно 
@@ -87,9 +87,9 @@ func shoot(num = 1, spread = 0, target = null):
 		if num > 1:
 			for i in range(num):
 				var a = -spread + i * (2 * spread) / (num - 1)
-				emit_signal('shoot', Bullet, pos, dir.rotated(a), target, self)
+				emit_signal('shoot', Bullet, pos, dir.rotated(a), target_pos, self)
 		else:
-			emit_signal('shoot', Bullet, pos, dir, target, self)
+			emit_signal('shoot', Bullet, pos, dir, target_pos, self)
 		$AnimationPlayer.play("muzzle_flash")
 	
 func control(delta):
