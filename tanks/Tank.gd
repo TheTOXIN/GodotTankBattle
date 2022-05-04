@@ -25,6 +25,10 @@ var health = 0
 
 var map: TileMap
 
+#TODO REFACTOR
+var prev_speed = 0
+var prev_rotate_speed = 0
+
 func _ready():
 	$GunTimer.wait_time = gun_cooldown
 	$Turret.offset.x = 20
@@ -75,7 +79,18 @@ func explode():
 	$Turret.hide()
 	$Explosion.show()
 	$Explosion.play()
+
+func boost(amount):
+	$BoostTimer.wait_time = amount
 	
+	prev_speed = max_speed
+	prev_rotate_speed = rotation_speed
+	
+	max_speed *= 2
+	rotation_speed *= 2
+	
+	$BoostTimer.start()
+
 func shoot(target_pos):
 	if can_shoot and ammo != 0:
 		can_shoot = false
@@ -131,3 +146,7 @@ func _on_GunTimer_timeout():
 func _on_Explosion_animation_finished():
 	queue_free()
 	emit_signal("dead")
+
+func _on_BoostTimer_timeout():
+	max_speed = prev_speed
+	rotation_speed = prev_rotate_speed

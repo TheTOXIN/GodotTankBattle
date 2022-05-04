@@ -100,6 +100,9 @@ region_enabled = true
 
 [node name="GunTimer" type="Timer" parent="."]
 
+[node name="BoostTimer" type="Timer" parent="."]
+wait_time = 10.0
+
 [node name="Explosion" parent="." instance=ExtResource( 2 )]
 visible = false
 scale = Vector2( 1.5, 1.5 )
@@ -111,4 +114,5 @@ anims/init = SubResource( 2 )
 anims/muzzle_flash = SubResource( 3 )
 
 [connection signal="timeout" from="GunTimer" to="." method="_on_GunTimer_timeout"]
+[connection signal="timeout" from="BoostTimer" to="." method="_on_BoostTimer_timeout"]
 [connection signal="animation_finished" from="Explosion" to="." method="_on_Explosion_animation_finished"]
