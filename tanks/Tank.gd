@@ -87,10 +87,14 @@ func shoot(num, spread, target_pos):
 		if num > 1:
 			for i in range(num):
 				var a = -spread + i * (2 * spread) / (num - 1)
-				emit_signal('shoot', Bullet, pos, dir.rotated(a), target_pos, self)
+				var dir_rotate = dir.rotated(a)
+				spawn_bullet(pos, dir_rotate, target_pos)
 		else:
-			emit_signal('shoot', Bullet, pos, dir, target_pos, self)
+			spawn_bullet(pos, dir, target_pos)
 		$AnimationPlayer.play("muzzle_flash")
+		
+func spawn_bullet(pos, dir, target_pos):
+	emit_signal('shoot', Bullet, pos, dir, target_pos, self)
 	
 func control(delta):
 	pass

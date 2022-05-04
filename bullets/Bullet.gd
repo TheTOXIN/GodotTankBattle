@@ -27,7 +27,7 @@ func explode():
 
 func seek():
 	#same operations 
-	#при воворотах снаряд может резко поменять направление
+	#при повороте танка снаряд тоже может резко дернуть хз баг или фича
 	var desired: Vector2 = (target_pos - position).normalized() * speed
 	var steer: Vector2 = velocity.direction_to(desired) * steer_force
 	return steer
