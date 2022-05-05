@@ -4,7 +4,7 @@ var bar_texture
 var show_boost = false
 
 func _ready():
-	$TextureBoost.visible = false
+	$GUI/Container/Effects/EffectBoost.visible = false
 
 func _on_Player_ammo_changed(value, count):
 	$GUI/Container/Bars/BulletsBar/Count/Background/Number.text = str(count)
@@ -24,6 +24,7 @@ func _on_Player_health_changed(value):
 	bar.texture_progress = bar_texture
 	
 	$AnimationPlayer.play("healthbar_flash")
+	$GUI/Container/Bars/HealthBar/Count/Background/Number.text = str(value)
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == "healthbar_flash":
@@ -31,13 +32,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 
 func _on_Player_boost():
 	show_boost = !show_boost
-	
-	if show_boost:
-		$AnimationPlayer2.play("flash_boost")
-	else:
-		$AnimationPlayer2.stop()
-	
-	$TextureBoost.visible = show_boost
+	$GUI/Container/Effects/EffectBoost.visible = show_boost
 
 func _on_Player_speeder(speed):
 	$GUI/Container/Speed/Label.text = str(int(speed)) + " / MPH"

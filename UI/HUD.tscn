@@ -1,10 +1,10 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://UI/BulletsBar.tscn" type="PackedScene" id=1]
 [ext_resource path="res://UI/HealthBar.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/Xolonium-Regular.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://UI/HUD.gd" type="Script" id=4]
-[ext_resource path="res://assets/effects/boost_whie.png" type="Texture" id=8]
+[ext_resource path="res://UI/EffectBoost.tscn" type="PackedScene" id=5]
 
 [sub_resource type="DynamicFont" id=4]
 size = 22
@@ -12,41 +12,11 @@ font_data = ExtResource( 3 )
 
 [sub_resource type="Animation" id=2]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("TextureBoost:self_modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
-}
 
 [sub_resource type="Animation" id=1]
 resource_name = "healthbar_flash"
 length = 0.2
 step = 0.05
-
-[sub_resource type="Animation" id=3]
-resource_name = "flash_boost"
-length = 0.5
-loop = true
-step = 0.05
-tracks/0/type = "value"
-tracks/0/path = NodePath("TextureBoost:self_modulate")
-tracks/0/interp = 0
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.25, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
-}
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource( 4 )
@@ -78,15 +48,15 @@ margin_bottom = 34.0
 margin_top = 38.0
 margin_bottom = 60.0
 
-[node name="CenterContainer" type="CenterContainer" parent="GUI/Container/Bars"]
-margin_top = 64.0
-margin_right = 304.0
+[node name="Effects" type="HBoxContainer" parent="GUI/Container"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -66.0
+margin_right = -2.0
 margin_bottom = 64.0
 
-[node name="Effects" type="HBoxContainer" parent="GUI/Container"]
-margin_left = 308.0
-margin_right = 308.0
-margin_bottom = 560.0
+[node name="EffectBoost" parent="GUI/Container/Effects" instance=ExtResource( 5 )]
+margin_right = 64.0
 
 [node name="Speed" type="MarginContainer" parent="GUI/Container"]
 anchor_top = 1.0
@@ -103,19 +73,5 @@ text = "54 MPH"
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 2 )
 anims/healthbar_flash = SubResource( 1 )
-
-[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
-autoplay = "flash_boost"
-anims/flash_boost = SubResource( 3 )
-
-[node name="TextureBoost" type="TextureRect" parent="."]
-modulate = Color( 0.490196, 0.909804, 0.415686, 1 )
-margin_left = 27.0
-margin_top = 19.0
-margin_right = 53.0
-margin_bottom = 48.0
-texture = ExtResource( 8 )
-expand = true
-stretch_mode = 6
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
