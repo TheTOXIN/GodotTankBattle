@@ -1,9 +1,14 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://UI/BulletsBar.tscn" type="PackedScene" id=1]
 [ext_resource path="res://UI/HealthBar.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/Xolonium-Regular.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://UI/HUD.gd" type="Script" id=4]
 [ext_resource path="res://assets/effects/boost_whie.png" type="Texture" id=8]
+
+[sub_resource type="DynamicFont" id=4]
+size = 22
+font_data = ExtResource( 3 )
 
 [sub_resource type="Animation" id=2]
 length = 0.001
@@ -54,7 +59,7 @@ margin_top = 20.0
 margin_right = -20.0
 margin_bottom = -20.0
 
-[node name="Container" type="HBoxContainer" parent="GUI"]
+[node name="Container" type="NinePatchRect" parent="GUI"]
 margin_right = 984.0
 margin_bottom = 560.0
 
@@ -73,10 +78,27 @@ margin_bottom = 34.0
 margin_top = 38.0
 margin_bottom = 60.0
 
+[node name="CenterContainer" type="CenterContainer" parent="GUI/Container/Bars"]
+margin_top = 64.0
+margin_right = 304.0
+margin_bottom = 64.0
+
 [node name="Effects" type="HBoxContainer" parent="GUI/Container"]
 margin_left = 308.0
 margin_right = 308.0
 margin_bottom = 560.0
+
+[node name="Speed" type="MarginContainer" parent="GUI/Container"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -27.0
+
+[node name="Label" type="Label" parent="GUI/Container/Speed"]
+margin_right = 984.0
+margin_bottom = 27.0
+custom_fonts/font = SubResource( 4 )
+text = "54 MPH"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 2 )

@@ -40,16 +40,15 @@ position = Vector2( 119.064, 64 )
 rotation = 3.11802
 
 [node name="Enemy" parent="Paths/Path2D/PathFollow2D" instance=ExtResource( 4 )]
-disable = true
 detect_radius = 400
 
 [node name="HUD" parent="." instance=ExtResource( 5 )]
 
 [node name="EnemyTurrent" parent="." instance=ExtResource( 6 )]
 position = Vector2( 863, 365 )
+offroad_friction = 0.75
 gun_shots = 3
 gun_spread = 0.1
-disable = true
 
 [node name="EnemyMissile" parent="." instance=ExtResource( 4 )]
 position = Vector2( 539, 243 )
@@ -57,7 +56,6 @@ rotation = -2.18088
 Bullet = ExtResource( 8 )
 gun_cooldown = 1.5
 max_ammo = 10
-disable = true
 detect_radius = 250
 
 [node name="Obstacles" type="Node2D" parent="."]
@@ -103,6 +101,7 @@ type = 2
 [connection signal="dead" from="Player" to="." method="_on_Player_dead"]
 [connection signal="health_changed" from="Player" to="HUD" method="_on_Player_health_changed"]
 [connection signal="shoot" from="Player" to="." method="_on_Tank_shoot"]
+[connection signal="speeder" from="Player" to="HUD" method="_on_Player_speeder"]
 [connection signal="shoot" from="Paths/Path2D/PathFollow2D/Enemy" to="." method="_on_Tank_shoot"]
 [connection signal="shoot" from="EnemyTurrent" to="." method="_on_Tank_shoot"]
 [connection signal="shoot" from="EnemyMissile" to="." method="_on_Tank_shoot"]

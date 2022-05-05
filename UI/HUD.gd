@@ -39,3 +39,5 @@ func _on_Player_boost():
 	
 	$TextureBoost.visible = show_boost
 
+func _on_Player_speeder(speed):
+	$GUI/Container/Speed/Label.text = str(int(speed)) + " / MPH"

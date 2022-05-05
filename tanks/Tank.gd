@@ -6,6 +6,8 @@ signal dead
 signal shoot
 signal boost
 signal track 
+signal speeder
+
 export (PackedScene) var Bullet
 export (int) var max_speed
 export (float) var max_rotation_speed
@@ -45,6 +47,9 @@ func _physics_process(delta):
 	control(delta)
 	check_offroad()
 	move_and_slide(velocity)
+	
+func _process(delta):
+	emit_signal("speeder", speed)
 
 func check_offroad():
 	if map:
