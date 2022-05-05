@@ -6,7 +6,6 @@ signal dead
 signal shoot
 signal boost
 signal track 
-#TODO BOOST EFFECT, SPEEDOMETER, TANK TRACK PRINT
 export (PackedScene) var Bullet
 export (int) var max_speed
 export (float) var max_rotation_speed
@@ -78,7 +77,7 @@ func set_ammo(value):
 	change_ammo()
 	
 func change_ammo():
-	emit_signal("ammo_changed", ammo * 100 / max_ammo)
+	emit_signal("ammo_changed", ammo * 100 / max_ammo, ammo)
 
 func explode():
 	alive = false

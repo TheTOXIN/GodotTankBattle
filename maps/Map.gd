@@ -1,5 +1,5 @@
 extends Node2D
-
+#TODO BOOST EFFECT, SPEEDOMETER, TANK TRACK PRINT, DESTROY OBJECTS, ICON EFFECTS UI
 func _ready():
 	set_camera_limits()
 	var cursor = load("res://assets/UI/crossair_white.png")

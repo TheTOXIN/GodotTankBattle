@@ -6,12 +6,17 @@
 [ext_resource path="res://assets/Xolonium-Regular.ttf" type="DynamicFontData" id=4]
 
 [sub_resource type="DynamicFont" id=1]
-size = 20
+size = 18
 font_data = ExtResource( 4 )
 
 [node name="BulletsBar" instance=ExtResource( 1 )]
+margin_bottom = 22.0
+
+[node name="Count" parent="." index="0"]
+margin_bottom = 22.0
 
 [node name="Background" parent="Count" index="0"]
+margin_bottom = 22.0
 rect_min_size = Vector2( 100, 22 )
 region_rect = Rect2( 377, 35, 3, 20 )
 
@@ -19,15 +24,17 @@ region_rect = Rect2( 377, 35, 3, 20 )
 anchor_top = 0.0
 anchor_bottom = 1.0
 margin_top = 0.0
+margin_right = -60.0
 margin_bottom = 0.0
 texture = ExtResource( 2 )
 
 [node name="Number" parent="Count/Background" index="1"]
-margin_left = 50.0
+margin_left = 40.0
 custom_fonts/font = SubResource( 1 )
-text = "200"
+align = 1
 
 [node name="Progress" parent="." index="1"]
 margin_right = 264.0
+margin_bottom = 22.0
 texture_progress = ExtResource( 3 )
 stretch_margin_right = 160
