@@ -49,19 +49,19 @@ func _physics_process(delta):
 	
 func take_damage(amount):
 	health -= amount
-	change_health()
-	if health < max_health / 3:
-		$Smoke.emitting = true
+	health_trigger()
 	if health <= 0:
 		explode()
 
-#TODO refactor with damage
 func heal(amount):
 	health = clamp(health + amount, 0, max_health)
+	health_trigger()
+	
+func health_trigger():
 	change_health()
 	if health >= max_health / 3:
 		$Smoke.emitting = false
-	
+		
 func change_health():
 	emit_signal("health_changed", health * 100 / max_health)
 	
@@ -90,33 +90,32 @@ func boost(amount):
 func shoot(target_pos):
 	if can_shoot and ammo != 0:
 		can_shoot = false
-		#TODO может не сработать проверка на ноль если чило не кратно 
-		self.ammo -= gun_shots 
+		self.ammo -= 1 
 		$GunTimer.start()
 		var dir = Vector2.RIGHT.rotated($Turret.global_rotation)
 		var pos = $Turret/Muzzle.global_position
 		if gun_shots > 1:
-			var bullets = []
-			
-			for i in range(gun_shots):
-				bullets.append(Bullet.instance())
-			
-			for i in range(gun_shots):
-				bullets[i].shot_shell = bullets
-				var a = -gun_spread + i * (2 * gun_spread) / (gun_shots - 1)
-				var dir_rotate = dir.rotated(a)
-				var bullet = Bullet.instance()
-				emit_signal('shoot', bullets[i], pos, dir_rotate, target_pos, self)
+			spawn_bullet_shell(pos, dir, target_pos)
 		else:
-			var bullet = Bullet.instance()
-			emit_signal('shoot', bullet, pos, dir, target_pos, self)
+			spawn_bullet(pos, dir, target_pos)
 		$AnimationPlayer.play("muzzle_flash")
 		
 func spawn_bullet_shell(pos, dir, target_pos):
-	pass
+	var bullets = []
+			
+	for i in range(gun_shots):
+		bullets.append(Bullet.instance())
+			
+	for i in range(gun_shots):
+		bullets[i].shot_shell = bullets
+		var a = -gun_spread + i * (2 * gun_spread) / (gun_shots - 1)
+		var dir_rotate = dir.rotated(a)
+		var bullet = Bullet.instance()
+		emit_signal('shoot', bullets[i], pos, dir_rotate, target_pos, self)
 
 func spawn_bullet(pos, dir, target_pos):
-	pass
+	var bullet = Bullet.instance()
+	emit_signal('shoot', bullet, pos, dir, target_pos, self)
 	
 func control(delta):
 	pass

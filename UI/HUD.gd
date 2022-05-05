@@ -1,22 +1,13 @@
 extends CanvasLayer
 
-var bar_red = preload("res://assets/UI/barHorizontal_red_mid 200.png")
-var bar_green = preload("res://assets/UI/barHorizontal_green_mid 200.png")
-var bar_yellow = preload("res://assets/UI/barHorizontal_yellow_mid 200.png")
 var bar_texture
-
 var show_boost = false
 
 func _on_Player_ammo_changed(value):
 	$Margin/Container/AmmoGuage.value = value
 	
 func _on_Player_health_changed(value):
-	bar_texture = bar_green
-	
-	if value < 60:
-		bar_texture = bar_yellow
-	if value < 30:
-		bar_texture = bar_red
+	bar_texture = Globals.get_bar(value)
 	
 	var bar = $Margin/Container/HealthBar
 	var tween = $Margin/Container/HealthBar/Tween

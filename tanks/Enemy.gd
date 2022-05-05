@@ -30,17 +30,9 @@ func _process(delta):
 	hit_pos = []
 	
 	var space_state = get_world_2d().direct_space_state;
-	var collision_shape = target.get_node('CollisionShape2D')
+	var ray_cast = ray_cast_points()
 	
-	var target_extents = collision_shape.shape.extents - Vector2(5, 5)
-	var shape_rotate  = collision_shape.global_rotation
-	#TODO TO METHOD
-	var nw = target.position - target_extents.rotated(shape_rotate)
-	var se = target.position + target_extents.rotated(shape_rotate)
-	var ne = target.position + Vector2(target_extents.x, -target_extents.y).rotated(shape_rotate)
-	var sw = target.position + Vector2(-target_extents.x, target_extents.y).rotated(shape_rotate)
-	
-	for check_pos in [target.position, nw, se, ne, sw]:
+	for check_pos in ray_cast:
 		var result = space_state.intersect_ray(global_position, check_pos, [self], collision_mask)
 		if result:
 			hit_pos.append(result.position)
@@ -48,6 +40,19 @@ func _process(delta):
 				targeting(result.position, delta)
 				break #oprimze ray cast
 	update()
+
+func ray_cast_points():
+	var collision_shape = target.get_node('CollisionShape2D')
+	
+	var target_extents = collision_shape.shape.extents - Vector2(5, 5)
+	var shape_rotate  = collision_shape.global_rotation
+
+	var nw = target.position - target_extents.rotated(shape_rotate)
+	var se = target.position + target_extents.rotated(shape_rotate)
+	var ne = target.position + Vector2(target_extents.x, -target_extents.y).rotated(shape_rotate)
+	var sw = target.position + Vector2(-target_extents.x, target_extents.y).rotated(shape_rotate)
+	
+	return [target.position, nw, se, ne, sw]
 
 func targeting(target_pos, delta):
 	var target_dir = (target_pos - global_position).normalized()
