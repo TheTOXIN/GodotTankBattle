@@ -17,12 +17,15 @@ func control(delta):
 	velocity = Vector2.ZERO
 	
 	if Input.is_action_pressed("forward"):
-		velocity = (Vector2.RIGHT * max_speed).rotated(rotation)
+		velocity = (Vector2.RIGHT * speed).rotated(rotation)
 	if Input.is_action_pressed("back"):
-		velocity = (Vector2.LEFT * max_speed / 2).rotated(rotation)
+		velocity = (Vector2.LEFT * speed / 2).rotated(rotation)
 		
 	if Input.is_action_just_pressed("click") or Input.is_action_pressed("ui_select"):
 		shoot(null)
+		
+	if Input.is_action_pressed("restart") and Globals.debag_mode:
+		Globals.restart()
 		
 	position.x = clamp(position.x, $Camera2D.limit_left, $Camera2D.limit_right)
 	position.y = clamp(position.y, $Camera2D.limit_top, $Camera2D.limit_bottom)

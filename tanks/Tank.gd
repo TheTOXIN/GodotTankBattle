@@ -4,10 +4,11 @@ signal health_changed
 signal ammo_changed
 signal dead 
 signal shoot
+signal boost
 
 export (PackedScene) var Bullet
 export (int) var max_speed
-export (float) var rotation_speed
+export (float) var max_rotation_speed
 export (float) var gun_cooldown
 export (int) var max_health
 export (float) var offroad_friction
@@ -22,18 +23,17 @@ var velocity = Vector2()
 var can_shoot = true
 var alive = true
 var health = 0
-
+var speed = 0
+var rotation_speed = 0
 var map: TileMap
-
-#TODO REFACTOR
-var prev_speed = 0
-var prev_rotate_speed = 0
 
 func _ready():
 	$GunTimer.wait_time = gun_cooldown
 	$Turret.offset.x = 20
 	$Smoke.emitting = false
 	health = max_health
+	speed = max_speed
+	rotation_speed = max_rotation_speed
 	change_health()
 	change_ammo()
 	
@@ -81,14 +81,10 @@ func explode():
 	$Explosion.play()
 
 func boost(amount):
+	emit_signal("boost")
 	$BoostTimer.wait_time = amount
-	
-	prev_speed = max_speed
-	prev_rotate_speed = rotation_speed
-	
-	max_speed *= 2
+	speed *= 2
 	rotation_speed *= 2
-	
 	$BoostTimer.start()
 
 func shoot(target_pos):
@@ -117,24 +113,9 @@ func shoot(target_pos):
 		$AnimationPlayer.play("muzzle_flash")
 		
 func spawn_bullet_shell(pos, dir, target_pos):
-#	var bullets = []
-#
-#	for i in range(gun_shots):
-#		bullets.append(Bullet.instance())
-#
-#	for i in range(gun_shots):
-#		bullets[i].shot_shell = bullets
-#
-#		var a = -gun_spread + i * (2 * gun_spread) / (gun_shots - 1)
-#		var dir_rotate = dir.rotated(a)
-#
-##		emit_signal('shoot', Bullet, pos, dir.rotated(a), target_pos, self)
-#		emit_signal('shoot', bullets[i], pos, dir, target_pos, self)
-		pass
+	pass
 
 func spawn_bullet(pos, dir, target_pos):
-#	var bullet = Bullet.instance()
-#	emit_signal('shoot', bullet, pos, dir, target_pos, self)
 	pass
 	
 func control(delta):
@@ -148,5 +129,6 @@ func _on_Explosion_animation_finished():
 	emit_signal("dead")
 
 func _on_BoostTimer_timeout():
-	max_speed = prev_speed
-	rotation_speed = prev_rotate_speed
+	emit_signal("boost")
+	speed = max_speed
+	rotation_speed = max_rotation_speed

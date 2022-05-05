@@ -97,6 +97,7 @@ position = Vector2( 963, 255 )
 type = 2
 
 [connection signal="ammo_changed" from="Player" to="HUD" method="_on_Player_ammo_changed"]
+[connection signal="boost" from="Player" to="HUD" method="_on_Player_boost"]
 [connection signal="dead" from="Player" to="." method="_on_Player_dead"]
 [connection signal="health_changed" from="Player" to="HUD" method="_on_Player_health_changed"]
 [connection signal="shoot" from="Player" to="." method="_on_Tank_shoot"]

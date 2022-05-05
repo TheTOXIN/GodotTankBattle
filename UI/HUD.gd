@@ -5,6 +5,8 @@ var bar_green = preload("res://assets/UI/barHorizontal_green_mid 200.png")
 var bar_yellow = preload("res://assets/UI/barHorizontal_yellow_mid 200.png")
 var bar_texture
 
+var show_boost = false
+
 func _on_Player_ammo_changed(value):
 	$Margin/Container/AmmoGuage.value = value
 	
@@ -31,3 +33,8 @@ func _on_Player_health_changed(value):
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == "healthbar_flash":
 		$Margin/Container/HealthBar.texture_progress = bar_texture
+
+func _on_Player_boost():
+	show_boost = !show_boost
+	$Margin/Container/VBoxContainer/MarginContainer/TextureBoost.visible = show_boost
+

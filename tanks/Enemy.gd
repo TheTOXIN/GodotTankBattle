@@ -9,7 +9,6 @@ onready var parent = get_parent()
 
 var target: Node2D = null
 var hit_pos: Array = []
-var speed = 0
 
 func _ready():
 	$DetectRadius/CollisionShape2D.shape = CircleShape2D.new()
@@ -53,7 +52,7 @@ func _process(delta):
 func targeting(target_pos, delta):
 	var target_dir = (target_pos - global_position).normalized()
 	var current_dir = Vector2.RIGHT.rotated($Turret.global_rotation)
-##		
+		
 	var v = current_dir.linear_interpolate(target_dir, turret_speed * delta)
 	$Turret.global_rotation = v.angle()
 
