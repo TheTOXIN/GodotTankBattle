@@ -36,3 +36,6 @@ func _on_Player_boost():
 
 func _on_Player_speeder(speed):
 	$GUI/Container/Speed/Label.text = str(int(speed)) + " / MPH"
+
+func _on_Map01_enemy_counter(count):
+	$GUI/Container/Enemies/Label.text = str(int(count)) + " TANKS"

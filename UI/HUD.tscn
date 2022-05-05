@@ -70,6 +70,21 @@ margin_bottom = 27.0
 custom_fonts/font = SubResource( 4 )
 text = "54 MPH"
 
+[node name="Enemies" type="MarginContainer" parent="GUI/Container"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -123.0
+margin_top = -31.0
+
+[node name="Label" type="Label" parent="GUI/Container/Enemies"]
+margin_top = 2.0
+margin_right = 125.0
+margin_bottom = 29.0
+custom_fonts/font = SubResource( 4 )
+text = "54 TANKS"
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 2 )
 anims/healthbar_flash = SubResource( 1 )

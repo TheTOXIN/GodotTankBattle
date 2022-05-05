@@ -105,6 +105,7 @@ rotation = 1.52408
 position = Vector2( -59.3814, 906.216 )
 scale = Vector2( 0.5, 0.5 )
 max_speed = 150
+ghost = true
 
 [node name="Obstacles" type="Node2D" parent="."]
 

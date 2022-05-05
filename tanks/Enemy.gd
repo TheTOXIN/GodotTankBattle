@@ -4,6 +4,7 @@ export (bool) var disable = false
 export (float) var turret_speed
 export (int) var detect_radius 
 export (float) var accuracy_shoot = 0.9
+export (bool) var ghost = false 
 
 onready var parent = get_parent()
 
@@ -13,6 +14,7 @@ var hit_pos: Array = []
 func _ready():
 	$DetectRadius/CollisionShape2D.shape = CircleShape2D.new()
 	$DetectRadius/CollisionShape2D.shape.radius = detect_radius
+	enemy_counter_trigger(1)
 
 func _draw():
 	if Globals.debag_mode:
@@ -76,6 +78,16 @@ func control(delta):
 	else:
 		#other movement
 		pass
+
+func explode():
+	if alive:
+		alive = false
+		enemy_counter_trigger(-1)
+		.explode()
+	
+func enemy_counter_trigger(val):
+	if !ghost:
+		Globals.enemy_counter += val
 
 func _on_DetectRadius_body_entered(body):
 	if body.name == "Player":

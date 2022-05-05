@@ -13,8 +13,11 @@ var levels = [
 	"res://maps/Map01.tscn"
 ]
 
+var enemy_counter = 0
+
 func restart():
 	current_level = 0
+	enemy_counter = 0
 	change_scene()
 
 func next_level():

@@ -1,11 +1,19 @@
 extends Node2D
-#TODO BOOST EFFECT, SPEEDOMETER, TANK TRACK PRINT, DESTROY OBJECTS, ICON EFFECTS UI
+#TODO BOOST EFFECT, TANK TRACK PRINT, DESTROY OBJECTS
+
+signal enemy_counter
+
 func _ready():
 	set_camera_limits()
 	var cursor = load("res://assets/UI/crossair_white.png")
 	Input.set_custom_mouse_cursor(cursor, Input.CURSOR_ARROW, Vector2(16, 16))
 	$Player.map = $Ground
-	
+
+func _process(delta):
+	emit_signal("enemy_counter", Globals.enemy_counter)
+	if Globals.enemy_counter == 0:
+		Globals.restart()
+
 func set_camera_limits():
 	var map_limits = $Ground.get_used_rect()
 	var map_cell_size = $Ground.cell_size
