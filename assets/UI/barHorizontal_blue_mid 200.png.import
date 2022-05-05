@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/grey_ammo.png-46cdaeaf12f21c7f957b831c4ef522ba.stex"
+path="res://.import/barHorizontal_blue_mid 200.png-b28c6ac5ac11793ffc6157fdf3091714.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/grey_ammo.png"
-dest_files=[ "res://.import/grey_ammo.png-46cdaeaf12f21c7f957b831c4ef522ba.stex" ]
+source_file="res://assets/UI/barHorizontal_blue_mid 200.png"
+dest_files=[ "res://.import/barHorizontal_blue_mid 200.png-b28c6ac5ac11793ffc6157fdf3091714.stex" ]
 
 [params]
 
