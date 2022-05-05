@@ -26,6 +26,13 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		$Margin/Container/HealthBar.texture_progress = bar_texture
 
 func _on_Player_boost():
+	print("ЧТО")
 	show_boost = !show_boost
+	
+	if show_boost:
+		$AnimationPlayer2.play("flash_boost")
+	else:
+		$AnimationPlayer2.stop()
+	
 	$Margin/Container/VBoxContainer/MarginContainer/TextureBoost.visible = show_boost
 

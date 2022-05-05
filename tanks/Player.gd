@@ -10,16 +10,20 @@ func control(delta):
 	if Input.is_action_pressed("turn_left"):
 		rot_dir -= 1
 	
-	#TODO use tile offroad
 	rotation += rotation_speed * rot_dir * delta
-	
-	velocity = Vector2.ZERO
-	
+
+	var possible_speed = max_speed * speed_boost *  speed_road
+
 	if Input.is_action_pressed("forward"):
+		speed = lerp(speed, possible_speed, acceleration)
 		velocity = (Vector2.RIGHT * speed).rotated(rotation)
-	if Input.is_action_pressed("back"):
-		velocity = (Vector2.LEFT * speed / 2).rotated(rotation)
-		
+	elif Input.is_action_pressed("back"):
+		speed = lerp(speed, possible_speed / 2, acceleration)
+		velocity = (Vector2.LEFT * speed).rotated(rotation)
+	else:
+		velocity = velocity.normalized() * speed
+		speed = lerp(speed, 0, acceleration + acceleration)
+				
 	if Input.is_action_just_pressed("click") or Input.is_action_pressed("ui_select"):
 		shoot(null)
 		

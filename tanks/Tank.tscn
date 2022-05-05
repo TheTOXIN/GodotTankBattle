@@ -102,6 +102,7 @@ region_enabled = true
 
 [node name="BoostTimer" type="Timer" parent="."]
 wait_time = 10.0
+one_shot = true
 
 [node name="Explosion" parent="." instance=ExtResource( 2 )]
 visible = false

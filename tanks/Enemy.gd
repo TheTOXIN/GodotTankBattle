@@ -70,7 +70,7 @@ func control(delta):
 		if $LookHead1.is_colliding() or $LookHead2.is_colliding():
 			speed = lerp(speed, 0, 0.1)
 		else: 
-			speed = lerp(speed, max_speed, 0.05)
+			speed = lerp(speed, max_speed, acceleration)
 		parent.offset += speed * delta
 		position = Vector2.ZERO
 	else:
