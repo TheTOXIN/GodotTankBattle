@@ -1,14 +1,22 @@
 extends "res://tanks/Tank.gd"
 
+var track_trails = false
+var skid = 0
+
 func control(delta):
 	$Turret.look_at(get_global_mouse_position())
-
+	
 	var rot_dir = 0
 	
 	if Input.is_action_pressed("turn_right"):
 		rot_dir += 1
-	if Input.is_action_pressed("turn_left"):
+		skid += 1
+	elif Input.is_action_pressed("turn_left"):
 		rot_dir -= 1
+		skid += 1
+	else:
+		skid = 0
+		pass
 	
 	rotation += rotation_speed * rot_dir * delta
 
@@ -32,3 +40,9 @@ func control(delta):
 		
 	position.x = clamp(position.x, $Camera2D.limit_left, $Camera2D.limit_right)
 	position.y = clamp(position.y, $Camera2D.limit_top, $Camera2D.limit_bottom)
+	
+	#make dependency чем больше скорость тем раньше занос, а не сколько повернул
+	track_trails = skid >= 30 and speed > 150
+	
+	if track_trails:
+		emit_signal("track", self)

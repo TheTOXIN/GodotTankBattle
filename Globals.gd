@@ -4,13 +4,13 @@ var bar_red = preload("res://assets/UI/barHorizontal_red_mid 200.png")
 var bar_green = preload("res://assets/UI/barHorizontal_green_mid 200.png")
 var bar_yellow = preload("res://assets/UI/barHorizontal_yellow_mid 200.png")
 
-var debag_mode = true
+var debag_mode = false
 
 var slow_terrain = [0, 10, 20, 30, 7, 8, 17, 18]
 var current_level = 0
 var levels = [
 	"res://UI/TitleScreen.tscn", 
-	"res://maps/Map01.tscn"
+	"res://maps/Map.tscn"
 ]
 
 var enemy_counter = 0

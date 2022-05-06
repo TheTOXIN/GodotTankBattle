@@ -22,6 +22,7 @@ export (int) var max_ammo = 20
 export (int) var ammo = -1 setget set_ammo
 
 var velocity = Vector2.ZERO
+var print_trail = false
 var can_shoot = true
 var alive = true
 var health = 0

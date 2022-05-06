@@ -28,6 +28,9 @@ region_rect = Rect2( 308, 263, 80, 83 )
 [node name="CollisionShape2D" parent="." index="1"]
 shape = SubResource( 1 )
 
+[node name="Smoke" parent="." index="2"]
+visible = false
+
 [node name="Turret" parent="." index="3"]
 texture = ExtResource( 2 )
 offset = Vector2( 20, 0 )
@@ -44,6 +47,7 @@ offset = Vector2( 25, 0 )
 region_rect = Rect2( 584, 58, 56, 32 )
 
 [node name="Camera2D" type="Camera2D" parent="." index="4"]
+visible = false
 current = true
 zoom = Vector2( 1.4, 1.4 )
 limit_left = 0

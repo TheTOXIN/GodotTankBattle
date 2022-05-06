@@ -13,6 +13,8 @@ func _process(delta):
 	emit_signal("enemy_counter", Globals.enemy_counter)
 	if Globals.enemy_counter == 0:
 		Globals.restart()
+#	if Globals.debag_mode:
+#		print(Engine.get_frames_per_second())
 
 func set_camera_limits():
 	var map_limits = $Ground.get_used_rect()
@@ -29,3 +31,6 @@ func _on_Tank_shoot(bullet, _pos, _dir, target_pos, holder):
 	
 func _on_Player_dead():
 	Globals.restart()
+
+func _on_Player_track(tank):
+	$TrackLayer.draw_track(tank)
