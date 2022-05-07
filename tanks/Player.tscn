@@ -70,6 +70,7 @@ rotation = 0.0
 [node name="AimSprite" type="Sprite" parent="." index="13"]
 position = Vector2( 69, 1 )
 scale = Vector2( 1.5, 1.5 )
+z_index = 1
 texture = ExtResource( 5 )
 
 [connection signal="body_entered" from="Body/Area2D" to="." method="_on_Area2D_body_entered"]

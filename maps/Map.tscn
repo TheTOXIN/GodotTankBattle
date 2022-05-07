@@ -28,6 +28,11 @@ tile_data = PoolIntArray( -1, 20, 0, -65536, 17, 0, -65535, 17, 0, -65534, 17, 0
 
 [node name="TrackLayer" parent="." instance=ExtResource( 10 )]
 
+[node name="Player" parent="." instance=ExtResource( 5 )]
+position = Vector2( 178, 167 )
+gun_cooldown = 1.0
+turret_speed = 0.1
+
 [node name="Paths" type="Node2D" parent="."]
 
 [node name="Path2D" type="Path2D" parent="Paths"]
@@ -104,15 +109,7 @@ type = 2
 position = Vector2( 1058, 546 )
 type = 3
 
-[node name="Player" parent="." instance=ExtResource( 5 )]
-position = Vector2( 178, 167 )
-max_rotation_speed = 1.0
-gun_cooldown = 1.0
-
 [connection signal="enemy_counter" from="." to="HUD" method="_on_Map01_enemy_counter"]
-[connection signal="shoot" from="Paths/Path2D/PathFollow2D/Enemy" to="." method="_on_Tank_shoot"]
-[connection signal="shoot" from="EnemyTurrent" to="." method="_on_Tank_shoot"]
-[connection signal="shoot" from="EnemyMissile" to="." method="_on_Tank_shoot"]
 [connection signal="ammo_changed" from="Player" to="HUD" method="_on_Player_ammo_changed"]
 [connection signal="boost" from="Player" to="HUD" method="_on_Player_boost"]
 [connection signal="dead" from="Player" to="." method="_on_Player_dead"]
@@ -120,3 +117,6 @@ gun_cooldown = 1.0
 [connection signal="shoot" from="Player" to="." method="_on_Tank_shoot"]
 [connection signal="speeder" from="Player" to="HUD" method="_on_Player_speeder"]
 [connection signal="track" from="Player" to="." method="_on_Player_track"]
+[connection signal="shoot" from="Paths/Path2D/PathFollow2D/Enemy" to="." method="_on_Tank_shoot"]
+[connection signal="shoot" from="EnemyTurrent" to="." method="_on_Tank_shoot"]
+[connection signal="shoot" from="EnemyMissile" to="." method="_on_Tank_shoot"]
