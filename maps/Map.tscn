@@ -71,6 +71,7 @@ detect_radius = 250
 
 [node name="Obstacle" parent="Obstacles" instance=ExtResource( 7 )]
 position = Vector2( 421, 252 )
+strength = -1
 type = 10
 
 [node name="Obstacle2" parent="Obstacles" instance=ExtResource( 7 )]
@@ -90,6 +91,7 @@ type = 14
 
 [node name="Obstacle3" parent="Obstacles" instance=ExtResource( 7 )]
 position = Vector2( 162, 354 )
+strength = 2
 type = 19
 
 [node name="Items" type="Node2D" parent="."]

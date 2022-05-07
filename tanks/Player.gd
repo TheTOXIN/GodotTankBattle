@@ -81,8 +81,10 @@ func turret_aim(_delta):
 	else:
 		$AimSprite.modulate = Globals.color_red
 
-func _on_Area2D_body_entered(_body):
+func _on_Area2D_body_entered(body):
 	if head_collide():
 		if speed > 200:
 			take_damage(5)
+			if body.has_method("take_damage"):
+				body.take_damage(5)
 		speed = 0

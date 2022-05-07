@@ -1,6 +1,8 @@
 tool #run script when you in editor
 extends StaticBody2D
 
+export (int) var strength
+
 enum Items {barrelBlack_side, barrelBlack_top, barrelGreen_side,
 			barrelGreen_top, barrelRed_side, barrelRed_top,
 			barrelRust_side, barrelRust_top, barricadeMetal,
@@ -33,10 +35,22 @@ var regions = {
 }
 
 export (Items) var type setget _update
+var region
 
 func _update(_type):
 	type = _type
-	$Sprite.region_rect = regions[type]
+	region = regions[type]
+	
+	update_texture()
+
+func update_texture(num = 0):
+	$Sprite.region_rect = region
 	var rect = RectangleShape2D.new()
 	rect.extents = $Sprite.region_rect.size / 2
 	$CollisionShape2D.shape = rect
+		
+func take_damage(_damage):
+	if strength == -1: return
+	strength -= 1
+	if strength == 0:
+		queue_free()
