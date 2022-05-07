@@ -51,7 +51,6 @@ detect_radius = 400
 
 [node name="EnemyTurrent" parent="." instance=ExtResource( 6 )]
 position = Vector2( 863, 365 )
-offroad_friction = 0.75
 gun_shots = 3
 gun_spread = 0.1
 disable = true
@@ -100,7 +99,11 @@ type = 1
 position = Vector2( 478, 65 )
 
 [node name="Pickup3" parent="Items" instance=ExtResource( 8 )]
-position = Vector2( 963, 255 )
+position = Vector2( 1055, -31 )
+type = 2
+
+[node name="Pickup4" parent="Items" instance=ExtResource( 8 )]
+position = Vector2( 1058, 546 )
 type = 2
 
 [connection signal="enemy_counter" from="." to="HUD" method="_on_Map01_enemy_counter"]

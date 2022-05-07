@@ -100,6 +100,7 @@ func boost(amount):
 #	rotation_speed *= 2  HMM
 	$BoostTimer.one_shot = true
 	$BoostTimer.start()
+	$Boost.show()
 
 func shoot(target_pos):
 	if can_shoot and ammo != 0:
@@ -148,3 +149,4 @@ func _on_BoostTimer_timeout():
 	emit_signal("boost")
 	speed_boost = 1
 	rotation_speed = max_rotation_speed
+	$Boost.hide()

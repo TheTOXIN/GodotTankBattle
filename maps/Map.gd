@@ -1,5 +1,5 @@
 extends Node2D
-#TODO BOOST EFFECT, TANK TRACK PRINT, DESTROY OBJECTS
+#reload, sounds, DESTROY OBJECTS
 
 signal enemy_counter
 

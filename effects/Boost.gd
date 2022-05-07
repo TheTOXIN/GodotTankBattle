@@ -7,13 +7,19 @@ var target
 var enable
 
 var counter = 0
-var stepper = 10
-#TODO TO BOOST
+var stepper = 5
+var length = 10 
+
 func _ready():
+	visible = false 
+	enable = false
 	target = get_node(targetPath)
 	pass
 	
 func _process(delta):
+	if !visible: 
+		return
+		
 	global_position = Vector2.ZERO
 	global_rotation = 0
 	
@@ -21,7 +27,21 @@ func _process(delta):
 		counter = 0
 		point = target.global_position
 		add_point(point)
-		
-	counter += 1
 	
+	if get_point_count() > length or !enable:
+		remove_point(0)
+	
+	if get_point_count() <= 0 and !enable:
+		visible = false 
+	
+	counter += 1
+	pass
+
+func hide():
+	enable = false
+	pass
+
+func show():
+	visible = true
+	enable = true
 	pass

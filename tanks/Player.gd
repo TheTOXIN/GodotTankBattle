@@ -29,7 +29,7 @@ func control(delta):
 			if speed_stop == 0: 
 				speed_stop = speed
 			var stopper = 300 / pow(speed_stop, 2)
-			print(stopper)
+#			print(stopper)
 			speed = lerp(speed, -possible_speed / 2, stopper)
 		else: #BACK
 			speed = lerp(speed, -possible_speed / 2, acceleration)

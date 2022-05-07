@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://effects/TrackTrace.gd" type="Script" id=1]
+[ext_resource path="res://effects/Boost.gd" type="Script" id=1]
 
-[node name="TrackTrace" type="Line2D"]
+[node name="Boost" type="Line2D"]
 position = Vector2( -2, 0 )
 default_color = Color( 0, 0, 0, 0.686275 )
 script = ExtResource( 1 )
