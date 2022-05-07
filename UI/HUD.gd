@@ -23,13 +23,10 @@ func _on_Player_health_changed(value):
 	
 	bar.texture_progress = bar_texture
 	
-	$AnimationPlayer.play("healthbar_flash")
+	$Timer.start()
+	$GUI/Container/Bars/HealthBar/AnimationPlayer.play("healthbar_flash")
 	$GUI/Container/Bars/HealthBar/Count/Background/Number.text = str(value)
-
-func _on_AnimationPlayer_animation_finished(anim_name):
-	if anim_name == "healthbar_flash":
-		$GUI/Container/Bars/HealthBar/Progress.texture_progress = bar_texture
-
+	
 func _on_Player_boost():
 	show_boost = !show_boost
 	$GUI/Container/Effects/EffectBoost.visible = show_boost
@@ -39,3 +36,7 @@ func _on_Player_speeder(speed):
 
 func _on_Map01_enemy_counter(count):
 	$GUI/Container/Enemies/Label.text = str(int(count)) + " TANKS"
+
+func _on_Timer_timeout():
+	$Timer.stop()
+	$GUI/Container/Bars/HealthBar/Progress.texture_progress = bar_texture

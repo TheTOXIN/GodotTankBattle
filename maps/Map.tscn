@@ -30,6 +30,7 @@ tile_data = PoolIntArray( -1, 20, 0, -65536, 17, 0, -65535, 17, 0, -65534, 17, 0
 
 [node name="Player" parent="." instance=ExtResource( 5 )]
 position = Vector2( 178, 167 )
+max_rotation_speed = 1.0
 
 [node name="Paths" type="Node2D" parent="."]
 

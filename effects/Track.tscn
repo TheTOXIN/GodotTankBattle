@@ -1,7 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
 [sub_resource type="StreamTexture" id=1]
-flags = 2
 load_path = "res://.import/track_trails.png-0369702f4b4b0970cc0fc2a92e30ab4d.stex"
 
 [node name="Track" type="Sprite"]

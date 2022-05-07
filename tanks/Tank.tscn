@@ -83,6 +83,10 @@ offroad_friction = 0.75
 
 [node name="Body" type="Sprite" parent="."]
 
+[node name="Area2D" type="Area2D" parent="Body"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Area2D"]
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
 [node name="Smoke" parent="." instance=ExtResource( 3 )]
@@ -113,6 +117,25 @@ root_node = NodePath("../Explosion")
 anims/RESET = SubResource( 1 )
 anims/init = SubResource( 2 )
 anims/muzzle_flash = SubResource( 3 )
+
+[node name="LookHead1" type="RayCast2D" parent="."]
+position = Vector2( 0, -30 )
+rotation = -0.0872665
+enabled = true
+cast_to = Vector2( 100, 0 )
+collision_mask = 7
+
+[node name="LookHead2" type="RayCast2D" parent="."]
+position = Vector2( 0, 30 )
+rotation = 0.0872665
+enabled = true
+cast_to = Vector2( 100, 0 )
+collision_mask = 7
+
+[node name="LookHead3" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 100, 0 )
+collision_mask = 7
 
 [connection signal="timeout" from="GunTimer" to="." method="_on_GunTimer_timeout"]
 [connection signal="timeout" from="BoostTimer" to="." method="_on_BoostTimer_timeout"]

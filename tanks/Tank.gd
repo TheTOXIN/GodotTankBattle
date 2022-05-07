@@ -97,7 +97,7 @@ func boost(amount):
 	emit_signal("boost")
 	$BoostTimer.wait_time = amount
 	speed_boost = 2
-	rotation_speed *= 2
+#	rotation_speed *= 2  HMM
 	$BoostTimer.one_shot = true
 	$BoostTimer.start()
 
@@ -130,6 +130,9 @@ func spawn_bullet_shell(pos, dir, target_pos):
 func spawn_bullet(pos, dir, target_pos):
 	var bullet = Bullet.instance()
 	emit_signal('shoot', bullet, pos, dir, target_pos, self)
+
+func head_collide():
+	return $LookHead1.is_colliding() or $LookHead2.is_colliding() or $LookHead3.is_colliding()
 	
 func control(delta):
 	pass

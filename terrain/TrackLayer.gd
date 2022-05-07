@@ -7,6 +7,7 @@ var stepper = 5
 var texture: Texture
 
 func _ready():
+	$Timer.wait_time = 1
 	texture = $Sprite.texture
 	pass
 	
@@ -14,7 +15,7 @@ func _process(delta):
 	update()
 	pass
 
-#TODO MAGIC
+#MAGIC
 func _draw():
 	for track in tracks:
 		var pos = Vector2(track.pos.x - 70, track.pos.y - 41)
@@ -29,9 +30,13 @@ func draw_track(tank):
 		tracks.append(track)
 		if tracks.size() >= 100:
 			tracks.remove(0)
+			$Timer.start()
 		counter = 0
 	counter += 1
-	
+
+func _on_Timer_timeout():
+	tracks.remove(0)	
+
 class TrackData:
 	var pos
 	var rot

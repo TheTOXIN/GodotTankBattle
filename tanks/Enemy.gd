@@ -69,7 +69,7 @@ func targeting(target_pos, delta):
 
 func control(delta):
 	if parent is PathFollow2D:
-		if $LookHead1.is_colliding() or $LookHead2.is_colliding():
+		if head_collide():
 			speed = lerp(speed, 0, 0.1)
 		else: 
 			speed = lerp(speed, max_speed, acceleration)
