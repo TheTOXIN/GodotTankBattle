@@ -1,5 +1,6 @@
 extends Node2D
-#TODO sounds, DESTROY OBJECTS bugs 
+
+#TODO sounds, DESTROY OBJECTS 
 
 signal enemy_counter
 
@@ -9,7 +10,7 @@ func _ready():
 	Input.set_custom_mouse_cursor(cursor, Input.CURSOR_ARROW, Vector2(16, 16))
 	$Player.map = $Ground
 
-func _process(delta):
+func _process(_delta):
 	emit_signal("enemy_counter", Globals.enemy_counter)
 	if Globals.enemy_counter == 0:
 		Globals.restart()

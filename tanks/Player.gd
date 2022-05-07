@@ -31,8 +31,8 @@ func control(delta):
 				speed_stop = speed
 			var stopper = 300 / pow(speed_stop, 2)
 			speed = lerp(speed, possible_back, stopper)
-			if speed > 0:
-				speed 
+			if speed < 0:
+				speed = 0
 			track_trails = true
 		else: #BACK
 			speed = lerp(speed, possible_back, acceleration)
@@ -61,7 +61,7 @@ func control(delta):
 	if track_trails:
 		emit_signal("track", self)
 
-func turret_aim(delta):
+func turret_aim(_delta):
 	var cursor = get_global_mouse_position()
 	var angle_position = cursor - $Turret.global_position
 	
@@ -81,7 +81,7 @@ func turret_aim(delta):
 	else:
 		$AimSprite.modulate = Globals.color_red
 
-func _on_Area2D_body_entered(body):
+func _on_Area2D_body_entered(_body):
 	if head_collide():
 		if speed > 200:
 			take_damage(5)

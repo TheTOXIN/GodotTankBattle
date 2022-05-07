@@ -31,7 +31,7 @@ func next_level():
 		restart()
 
 func change_scene():
-	get_tree().change_scene(levels[current_level])
+	var _res = get_tree().change_scene(levels[current_level])
 	
 func get_bar(value):
 	var bar_texture = Globals.bar_green

@@ -33,7 +33,7 @@ func seek():
 	var steer: Vector2 = velocity.direction_to(desired) * steer_force
 	return steer
 
-func take_damage(damage):
+func take_damage(_damage):
 	explode()
 
 func _process(delta):

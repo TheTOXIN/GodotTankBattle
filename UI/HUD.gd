@@ -14,7 +14,7 @@ func _ready():
 		reload_time = player.gun_cooldown
 	$HUD/GUI/Container/Effects/EffectBoost.visible = false
 
-func _process(delta):
+func _process(_delta):
 	if player: 
 		draw_reload()
 

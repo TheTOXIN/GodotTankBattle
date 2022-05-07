@@ -4,9 +4,9 @@ signal health_changed
 signal ammo_changed
 signal dead 
 signal shoot
-signal boost
-signal track 
+signal boost 
 signal speeder
+signal track
 
 export (PackedScene) var Bullet
 export (int) var max_speed
@@ -49,9 +49,9 @@ func _physics_process(delta):
 		return
 	control(delta)
 	check_offroad()
-	move_and_slide(velocity)
+	var _res = move_and_slide(velocity)
 	
-func _process(delta):
+func _process(_delta):
 	can_shoot = !reload and ammo != 0
 	emit_signal("speeder", speed)
 
@@ -91,7 +91,7 @@ func change_ammo():
 func explode():
 	alive = false
 	can_shoot = false
-	$CollisionShape2D.disabled = true
+	$CollisionShape2D.set_deferred("disabled", true)
 	$Turret.hide()
 	$Explosion.show()
 	$Explosion.play()
@@ -121,14 +121,13 @@ func shoot(target_pos):
 func spawn_bullet_shell(pos, dir, target_pos):
 	var bullets = []
 			
-	for i in range(gun_shots):
+	for _i in range(gun_shots):
 		bullets.append(Bullet.instance())
 			
 	for i in range(gun_shots):
 		bullets[i].shot_shell = bullets
 		var a = -gun_spread + i * (2 * gun_spread) / (gun_shots - 1)
 		var dir_rotate = dir.rotated(a)
-		var bullet = Bullet.instance()
 		emit_signal('shoot', bullets[i], pos, dir_rotate, target_pos, self)
 
 func spawn_bullet(pos, dir, target_pos):
@@ -138,7 +137,7 @@ func spawn_bullet(pos, dir, target_pos):
 func head_collide():
 	return $LookHead1.is_colliding() or $LookHead2.is_colliding() or $LookHead3.is_colliding()
 	
-func control(delta):
+func control(_delta):
 	pass
 
 func _on_GunTimer_timeout():

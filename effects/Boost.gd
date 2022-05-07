@@ -16,7 +16,7 @@ func _ready():
 	target = get_node(targetPath)
 	pass
 	
-func _process(delta):
+func _process(_delta):
 	if !visible: 
 		return
 		

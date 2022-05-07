@@ -11,14 +11,13 @@ func _ready():
 	texture = $Sprite.texture
 	pass
 	
-func _process(delta):
+func _process(_delta):
 	update()
 	pass
 
 #MAGIC
 func _draw():
 	for track in tracks:
-		var pos = Vector2(track.pos.x - 70, track.pos.y - 41)
 		var origin = (texture.get_size() * 0.5).rotated(track.rot + 5/4 * PI)
 		draw_set_transform(origin, track.rot, Vector2.ONE)
 		draw_texture(texture, track.pos.rotated(-track.rot))

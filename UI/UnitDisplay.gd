@@ -4,7 +4,7 @@ func _ready():
 	for node in get_children():
 		node.hide()
 
-func _process(delta):
+func _process(_delta):
 	global_rotation = 0
 	
 func _on_Enemy_health_changed(value):
