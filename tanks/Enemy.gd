@@ -40,7 +40,6 @@ func _process(delta):
 			if result.collider.name == "Player":
 				targeting(result.position, delta)
 				break #oprimze ray cast
-	update()
 
 func ray_cast_points():
 	var collision_shape = target.get_node('CollisionShape2D')

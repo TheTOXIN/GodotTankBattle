@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/effects/reloader_whie.png" type="Texture" id=1]
+[ext_resource path="res://UI/Effect.tscn" type="PackedScene" id=2]
+
+[node name="EffectAim" instance=ExtResource( 2 )]
+
+[node name="TextureBoost" parent="Background" index="0"]
+margin_right = 64.0
+texture = ExtResource( 1 )

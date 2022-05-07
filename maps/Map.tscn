@@ -45,7 +45,6 @@ position = Vector2( 119.064, 64 )
 rotation = 3.11802
 
 [node name="Enemy" parent="Paths/Path2D/PathFollow2D" instance=ExtResource( 3 )]
-disable = true
 detect_radius = 400
 
 [node name="HUD" parent="." instance=ExtResource( 9 )]
@@ -56,7 +55,6 @@ position = Vector2( 863, 365 )
 offroad_friction = 0.75
 gun_shots = 3
 gun_spread = 0.1
-disable = true
 
 [node name="EnemyMissile" parent="." instance=ExtResource( 3 )]
 position = Vector2( 539, 243 )
@@ -64,7 +62,6 @@ rotation = -2.18088
 Bullet = ExtResource( 4 )
 gun_cooldown = 1.5
 max_ammo = 10
-disable = true
 detect_radius = 250
 
 [node name="Obstacles" type="Node2D" parent="."]
@@ -112,6 +109,7 @@ position = Vector2( 1058, 546 )
 type = 3
 
 [connection signal="enemy_counter" from="." to="HUD" method="_on_Map01_enemy_counter"]
+[connection signal="aim" from="Player" to="HUD" method="_on_Player_aim"]
 [connection signal="ammo_changed" from="Player" to="HUD" method="_on_Player_ammo_changed"]
 [connection signal="boost" from="Player" to="HUD" method="_on_Player_boost"]
 [connection signal="dead" from="Player" to="." method="_on_Player_dead"]

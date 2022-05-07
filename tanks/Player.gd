@@ -81,6 +81,11 @@ func turret_aim(_delta):
 	else:
 		$AimSprite.modulate = Globals.color_red
 
+func _draw():
+	if aim_effect:
+		draw_line($Turret/Muzzle.position, $AimSprite.position, Globals.color_red, 5)
+	pass
+
 func _on_Area2D_body_entered(body):
 	if head_collide():
 		if speed > 200:

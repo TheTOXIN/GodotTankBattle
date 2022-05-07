@@ -59,11 +59,11 @@ region_rect = Rect2( 584, 58, 56, 32 )
 
 [node name="Aim" type="Position2D" parent="Turret" index="2"]
 
-[node name="LookHead1" parent="." index="10"]
+[node name="LookHead1" parent="." index="11"]
 position = Vector2( 0, -35 )
 rotation = 0.0
 
-[node name="LookHead2" parent="." index="11"]
+[node name="LookHead2" parent="." index="12"]
 position = Vector2( 0, 35 )
 rotation = 0.0
 

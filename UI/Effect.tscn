@@ -1,16 +1,55 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://assets/effects/boost_whie.png" type="Texture" id=1]
 
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Background/TextureBoost:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "effect_flash"
+loop = true
+step = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Background/TextureBoost:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
 [node name="Effect" type="MarginContainer"]
+margin_right = 64.0
 margin_bottom = 64.0
 
 [node name="Background" type="NinePatchRect" parent="."]
+margin_right = 64.0
 margin_bottom = 64.0
 
 [node name="TextureBoost" type="TextureRect" parent="Background"]
-self_modulate = Color( 0.384314, 0.87451, 0.298039, 1 )
+modulate = Color( 0.376471, 0.882353, 0.262745, 1 )
 margin_bottom = 64.0
 texture = ExtResource( 1 )
 expand = true
 stretch_mode = 6
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "effect_flash"
+anims/RESET = SubResource( 2 )
+anims/effect_flash = SubResource( 1 )

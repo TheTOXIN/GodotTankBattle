@@ -5,6 +5,7 @@ export(NodePath) var player_path
 var player
 var bar_texture
 var show_boost = false
+var show_aim = false
 var show_reload = false
 var reload_time = 0
 
@@ -13,6 +14,7 @@ func _ready():
 		player = get_node(player_path)
 		reload_time = player.gun_cooldown
 	$HUD/GUI/Container/Effects/EffectBoost.visible = false
+	$HUD/GUI/Container/Effects/EffectAim.visible = false
 
 func _process(_delta):
 	if player: 
@@ -73,3 +75,7 @@ func start_reload():
 		$ReloadProgress, 'value', $ReloadProgress.value, 100, reload_time
 	)
 	$ReloadProgress/Tween.start()
+
+func _on_Player_aim():
+	show_aim = !show_aim
+	$HUD/GUI/Container/Effects/EffectAim.visible = show_aim

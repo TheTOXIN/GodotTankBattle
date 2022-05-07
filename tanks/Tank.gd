@@ -7,6 +7,7 @@ signal shoot
 signal boost 
 signal speeder
 signal track
+signal aim
 
 export (PackedScene) var Bullet
 export (int) var max_speed
@@ -33,6 +34,9 @@ var speed_boost = 1.0
 var speed_road = 1.0
 var map: TileMap
 var reload = false
+var aim_effect = false
+var default_turret_speed
+var bullet_boost = 1
 
 func _ready():
 	$GunTimer.wait_time = gun_cooldown
@@ -41,6 +45,7 @@ func _ready():
 	health = max_health
 	speed = 0
 	rotation_speed = max_rotation_speed
+	default_turret_speed = turret_speed
 	change_health()
 	change_ammo()
 	
@@ -54,6 +59,7 @@ func _physics_process(delta):
 func _process(_delta):
 	can_shoot = !reload and ammo != 0
 	emit_signal("speeder", speed)
+	update()
 
 func check_offroad():
 	if map:
@@ -100,11 +106,21 @@ func boost(amount):
 	emit_signal("boost")
 	$BoostTimer.wait_time = amount
 	speed_boost = 2
-#	rotation_speed *= 2  HMM
+	rotation_speed *= 1.5
 	$BoostTimer.one_shot = true
 	$BoostTimer.start()
 	$Boost.show()
 
+func aim(time):
+	emit_signal("aim")
+	turret_speed = 1
+	bullet_boost = 2
+	aim_effect = true
+	$GunTimer.wait_time = 0.5
+	$AimTimer.wait_time = time
+	$AimTimer.one_shot = true
+	$AimTimer.start()
+	
 func shoot(target_pos):
 	if can_shoot:
 		reload = true
@@ -152,3 +168,10 @@ func _on_BoostTimer_timeout():
 	speed_boost = 1
 	rotation_speed = max_rotation_speed
 	$Boost.hide()
+
+func _on_AimTimer_timeout():
+	emit_signal("aim")
+	turret_speed = default_turret_speed
+	$GunTimer.wait_time = gun_cooldown
+	bullet_boost = 1
+	aim_effect = false

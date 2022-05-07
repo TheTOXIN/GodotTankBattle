@@ -1,6 +1,6 @@
 extends Node2D
 
-#TODO sounds, DESTROY OBJECTS 
+#TODO sounds,map,test,counterdamage,config,bugs
 
 signal enemy_counter
 

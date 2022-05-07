@@ -28,5 +28,5 @@ func _on_Pickup_body_entered(body):
 		Items.boost:
 			body.boost(rand.randi_range(5, 10))
 		Items.aim:
-			print("FAST RELOAD") #TODO FAST RELOAD AND AIM RAY
+			body.aim(rand.randi_range(5, 10))
 	queue_free()
