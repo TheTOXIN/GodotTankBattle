@@ -19,16 +19,21 @@ gun_cooldown = 0.5
 max_health = 50
 turret_speed = 1.0
 
-[node name="Body" parent="." index="0"]
+[node name="Body" parent="." index="1"]
 texture = ExtResource( 2 )
 region_enabled = true
 region_rect = Rect2( 268, 186, 80, 76 )
 
-[node name="CollisionShape2D" parent="." index="1"]
+[node name="CollisionShape2D" parent="." index="2"]
 position = Vector2( 0, -0.5 )
 shape = SubResource( 2 )
 
-[node name="Turret" parent="." index="3"]
+[node name="DetectRadius" type="Area2D" parent="." index="4"]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectRadius" index="0"]
+
+[node name="Turret" parent="." index="5"]
 texture = ExtResource( 2 )
 offset = Vector2( 20, 0 )
 region_enabled = true
@@ -42,11 +47,6 @@ position = Vector2( 60, 0 )
 texture = ExtResource( 2 )
 offset = Vector2( 25, 0 )
 region_rect = Rect2( 584, 58, 56, 32 )
-
-[node name="DetectRadius" type="Area2D" parent="." index="4"]
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectRadius" index="0"]
 
 [node name="UnitDisplay" parent="." index="7" instance=ExtResource( 5 )]
 

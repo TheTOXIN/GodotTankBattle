@@ -1,7 +1,6 @@
 extends "res://tanks/Tank.gd"
 
 export (bool) var disable = false
-export (float) var turret_speed
 export (int) var detect_radius 
 export (float) var accuracy_shoot = 0.9
 export (bool) var ghost = false 

@@ -15,6 +15,7 @@ export (float) var gun_cooldown
 export (int) var max_health
 export (float) var offroad_friction
 
+export (float) var turret_speed = PI
 export (int) var gun_shots = 1
 export (float, 0, 1.5) var gun_spread = 0
 export (float) var acceleration = 0.025
@@ -31,6 +32,7 @@ var rotation_speed = 0
 var speed_boost = 1.0
 var speed_road = 1.0
 var map: TileMap
+var reload = false
 
 func _ready():
 	$GunTimer.wait_time = gun_cooldown
@@ -50,6 +52,7 @@ func _physics_process(delta):
 	move_and_slide(velocity)
 	
 func _process(delta):
+	can_shoot = !reload and ammo != 0
 	emit_signal("speeder", speed)
 
 func check_offroad():
@@ -103,8 +106,8 @@ func boost(amount):
 	$Boost.show()
 
 func shoot(target_pos):
-	if can_shoot and ammo != 0:
-		can_shoot = false
+	if can_shoot:
+		reload = true
 		self.ammo -= 1 
 		$GunTimer.start()
 		var dir = Vector2.RIGHT.rotated($Turret.global_rotation)
@@ -139,7 +142,7 @@ func control(delta):
 	pass
 
 func _on_GunTimer_timeout():
-	can_shoot = true
+	reload = false
 
 func _on_Explosion_animation_finished():
 	queue_free()

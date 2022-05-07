@@ -2,17 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d7505242-629b-4e0f-89e1-b310c168381c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/UI/TitleScreen.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/UI/TitleScreen.tscn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bullets/Bullet.gd" beforeDir="false" afterPath="$PROJECT_DIR$/bullets/Bullet.gd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bullets/Bullet.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/bullets/Bullet.tscn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/default_env.tres" beforeDir="false" afterPath="$PROJECT_DIR$/default_env.tres" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/HUD.gd" beforeDir="false" afterPath="$PROJECT_DIR$/UI/HUD.gd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/HUD.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/UI/HUD.tscn" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/maps/Map.gd" beforeDir="false" afterPath="$PROJECT_DIR$/maps/Map.gd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/Map01.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/maps/Map01.tscn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tanks/Enemy.gd" beforeDir="false" afterPath="$PROJECT_DIR$/tanks/Enemy.gd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/maps/Map.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/maps/Map.tscn" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tanks/Enemy.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/tanks/Enemy.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tanks/Player.gd" beforeDir="false" afterPath="$PROJECT_DIR$/tanks/Player.gd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tanks/Player.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/tanks/Player.tscn" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tanks/Tank.gd" beforeDir="false" afterPath="$PROJECT_DIR$/tanks/Tank.gd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tanks/Tank.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/tanks/Tank.tscn" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +42,7 @@
       <option name="presentableId" value="Default" />
       <updated>1651680870769</updated>
       <workItem from="1651680872023" duration="46000" />
+      <workItem from="1651928930579" duration="15000" />
     </task>
     <servers />
   </component>

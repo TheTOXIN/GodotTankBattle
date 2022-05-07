@@ -1,68 +1,71 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://UI/BulletsBar.tscn" type="PackedScene" id=1]
 [ext_resource path="res://UI/HealthBar.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/Xolonium-Regular.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://UI/HUD.gd" type="Script" id=4]
 [ext_resource path="res://UI/EffectBoost.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/muzzle_cursor.png" type="Texture" id=6]
 
 [sub_resource type="DynamicFont" id=4]
 size = 22
 font_data = ExtResource( 3 )
 
-[node name="HUD" type="CanvasLayer"]
+[node name="UI" type="Node"]
 script = ExtResource( 4 )
 
-[node name="GUI" type="MarginContainer" parent="."]
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="GUI" type="MarginContainer" parent="HUD"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 20.0
-margin_top = 20.0
-margin_right = -20.0
-margin_bottom = -20.0
+margin_left = 15.0
+margin_top = 15.0
+margin_right = -15.0
+margin_bottom = -15.0
 
-[node name="Container" type="NinePatchRect" parent="GUI"]
-margin_right = 984.0
-margin_bottom = 560.0
+[node name="Container" type="NinePatchRect" parent="HUD/GUI"]
+margin_right = 994.0
+margin_bottom = 570.0
 
-[node name="Bars" type="VBoxContainer" parent="GUI/Container"]
+[node name="Bars" type="VBoxContainer" parent="HUD/GUI/Container"]
 margin_right = 304.0
 margin_bottom = 560.0
 
-[node name="HealthBar" parent="GUI/Container/Bars" instance=ExtResource( 2 )]
+[node name="HealthBar" parent="HUD/GUI/Container/Bars" instance=ExtResource( 2 )]
 
-[node name="VSplitContainer" type="VSplitContainer" parent="GUI/Container/Bars"]
+[node name="VSplitContainer" type="VSplitContainer" parent="HUD/GUI/Container/Bars"]
 margin_top = 34.0
 margin_right = 304.0
 margin_bottom = 34.0
 
-[node name="BulletsBar" parent="GUI/Container/Bars" instance=ExtResource( 1 )]
+[node name="BulletsBar" parent="HUD/GUI/Container/Bars" instance=ExtResource( 1 )]
 margin_top = 38.0
 margin_bottom = 60.0
 
-[node name="Effects" type="HBoxContainer" parent="GUI/Container"]
+[node name="Effects" type="HBoxContainer" parent="HUD/GUI/Container"]
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -66.0
 margin_right = -2.0
 margin_bottom = 64.0
 
-[node name="EffectBoost" parent="GUI/Container/Effects" instance=ExtResource( 5 )]
+[node name="EffectBoost" parent="HUD/GUI/Container/Effects" instance=ExtResource( 5 )]
 margin_right = 64.0
 
-[node name="Speed" type="MarginContainer" parent="GUI/Container"]
+[node name="Speed" type="MarginContainer" parent="HUD/GUI/Container"]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -27.0
 
-[node name="Label" type="Label" parent="GUI/Container/Speed"]
-margin_right = 984.0
+[node name="Label" type="Label" parent="HUD/GUI/Container/Speed"]
+margin_right = 994.0
 margin_bottom = 27.0
 custom_fonts/font = SubResource( 4 )
 text = "54 MPH"
 
-[node name="Enemies" type="MarginContainer" parent="GUI/Container"]
+[node name="Enemies" type="MarginContainer" parent="HUD/GUI/Container"]
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
@@ -70,7 +73,7 @@ anchor_bottom = 1.0
 margin_left = -123.0
 margin_top = -31.0
 
-[node name="Label" type="Label" parent="GUI/Container/Enemies"]
+[node name="Label" type="Label" parent="HUD/GUI/Container/Enemies"]
 margin_top = 2.0
 margin_right = 125.0
 margin_bottom = 29.0
@@ -79,5 +82,22 @@ text = "54 TANKS"
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.2
+
+[node name="ReloadProgress" type="TextureProgress" parent="."]
+modulate = Color( 0.447059, 1, 0.309804, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -27.0
+margin_top = -27.0
+margin_right = 27.0
+margin_bottom = 27.0
+value = 75.0
+texture_progress = ExtResource( 6 )
+fill_mode = 4
+nine_patch_stretch = true
+
+[node name="Tween" type="Tween" parent="ReloadProgress"]
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

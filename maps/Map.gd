@@ -1,5 +1,5 @@
 extends Node2D
-#reload, sounds, DESTROY OBJECTS
+#TODO sounds, DESTROY OBJECTS bugs 
 
 signal enemy_counter
 

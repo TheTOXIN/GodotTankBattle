@@ -13,6 +13,9 @@ var levels = [
 	"res://maps/Map.tscn"
 ]
 
+var color_green = Color("60e143")
+var color_red = Color("d62121")
+
 var enemy_counter = 0
 
 func restart():
