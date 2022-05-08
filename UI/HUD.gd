@@ -8,6 +8,7 @@ var show_boost = false
 var show_aim = false
 var show_reload = false
 var reload_time = 0
+var show_shield = false
 
 func _ready():
 	if player_path:
@@ -15,6 +16,7 @@ func _ready():
 		reload_time = player.gun_cooldown
 	$HUD/GUI/Container/Effects/EffectBoost.visible = false
 	$HUD/GUI/Container/Effects/EffectAim.visible = false
+	$HUD/GUI/Container/Effects/EffectShield.visible = false
 
 func _process(_delta):
 	if player: 
@@ -79,3 +81,7 @@ func start_reload():
 func _on_Player_aim():
 	show_aim = !show_aim
 	$HUD/GUI/Container/Effects/EffectAim.visible = show_aim
+
+func _on_Player_shield():
+	show_shield = !show_shield
+	$HUD/GUI/Container/Effects/EffectShield.visible = show_shield

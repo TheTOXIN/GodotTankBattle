@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://UI/BulletsBar.tscn" type="PackedScene" id=1]
 [ext_resource path="res://UI/HealthBar.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://UI/EffectBoost.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/muzzle_cursor.png" type="Texture" id=6]
 [ext_resource path="res://UI/EffectAim.tscn" type="PackedScene" id=7]
+[ext_resource path="res://UI/EffectShield.tscn" type="PackedScene" id=8]
 
 [sub_resource type="DynamicFont" id=4]
 size = 22
@@ -47,15 +48,18 @@ margin_bottom = 60.0
 [node name="Effects" type="VBoxContainer" parent="HUD/GUI/Container"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -62.0
-margin_right = 2.0
-margin_bottom = 145.0
+anchor_bottom = 1.0
+margin_left = -64.0
 
 [node name="EffectBoost" parent="HUD/GUI/Container/Effects" instance=ExtResource( 5 )]
 
 [node name="EffectAim" parent="HUD/GUI/Container/Effects" instance=ExtResource( 7 )]
 margin_top = 68.0
 margin_bottom = 68.0
+
+[node name="EffectShield" parent="HUD/GUI/Container/Effects" instance=ExtResource( 8 )]
+margin_top = 72.0
+margin_bottom = 72.0
 
 [node name="Speed" type="MarginContainer" parent="HUD/GUI/Container"]
 anchor_top = 1.0

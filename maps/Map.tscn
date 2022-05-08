@@ -108,12 +108,17 @@ type = 2
 position = Vector2( 1058, 546 )
 type = 3
 
+[node name="Pickup5" parent="Items" instance=ExtResource( 8 )]
+position = Vector2( 966, 248 )
+type = 4
+
 [connection signal="enemy_counter" from="." to="HUD" method="_on_Map01_enemy_counter"]
 [connection signal="aim" from="Player" to="HUD" method="_on_Player_aim"]
 [connection signal="ammo_changed" from="Player" to="HUD" method="_on_Player_ammo_changed"]
 [connection signal="boost" from="Player" to="HUD" method="_on_Player_boost"]
 [connection signal="dead" from="Player" to="." method="_on_Player_dead"]
 [connection signal="health_changed" from="Player" to="HUD" method="_on_Player_health_changed"]
+[connection signal="shield" from="Player" to="HUD" method="_on_Player_shield"]
 [connection signal="shoot" from="Player" to="." method="_on_Tank_shoot"]
 [connection signal="speeder" from="Player" to="HUD" method="_on_Player_speeder"]
 [connection signal="track" from="Player" to="." method="_on_Player_track"]

@@ -8,6 +8,7 @@ signal boost
 signal speeder
 signal track
 signal aim
+signal shield
 
 export (PackedScene) var Bullet
 export (int) var max_speed
@@ -35,6 +36,7 @@ var speed_road = 1.0
 var map: TileMap
 var reload = false
 var aim_effect = false
+var shield_effect = false
 var default_turret_speed
 var bullet_boost = 1
 
@@ -70,6 +72,7 @@ func check_offroad():
 			speed_road = 1
 			
 func take_damage(amount):
+	if shield_effect: return
 	health -= amount
 	health_trigger()
 	if health <= 0:
@@ -120,7 +123,14 @@ func aim(time):
 	$AimTimer.wait_time = time
 	$AimTimer.one_shot = true
 	$AimTimer.start()
-	
+
+func shield(time):
+	emit_signal("shield")
+	shield_effect = true
+	$ShieldTimer.wait_time = time
+	$ShieldTimer.one_shot = true
+	$ShieldTimer.start()
+
 func shoot(target_pos):
 	if can_shoot:
 		reload = true
@@ -175,3 +185,7 @@ func _on_AimTimer_timeout():
 	$GunTimer.wait_time = gun_cooldown
 	bullet_boost = 1
 	aim_effect = false
+
+func _on_ShieldTimer_timeout():
+	emit_signal("shield")
+	shield_effect = false 

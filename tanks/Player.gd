@@ -84,6 +84,8 @@ func turret_aim(_delta):
 func _draw():
 	if aim_effect:
 		draw_line($Turret/Muzzle.position, $AimSprite.position, Globals.color_red, 5)
+	if shield_effect:
+		draw_circle($Turret/Muzzle.position, 75, Globals.color_blue)
 	pass
 
 func _on_Area2D_body_entered(body):
@@ -93,3 +95,5 @@ func _on_Area2D_body_entered(body):
 			if body.has_method("take_damage"):
 				body.take_damage(5)
 		speed = 0
+		
+		

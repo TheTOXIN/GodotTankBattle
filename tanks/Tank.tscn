@@ -127,6 +127,10 @@ one_shot = true
 wait_time = 10.0
 one_shot = true
 
+[node name="ShieldTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
 [node name="Explosion" parent="." instance=ExtResource( 2 )]
 visible = false
 scale = Vector2( 1.5, 1.5 )
@@ -159,4 +163,5 @@ collision_mask = 7
 [connection signal="timeout" from="GunTimer" to="." method="_on_GunTimer_timeout"]
 [connection signal="timeout" from="BoostTimer" to="." method="_on_BoostTimer_timeout"]
 [connection signal="timeout" from="AimTimer" to="." method="_on_AimTimer_timeout"]
+[connection signal="timeout" from="ShieldTimer" to="." method="_on_ShieldTimer_timeout"]
 [connection signal="animation_finished" from="Explosion" to="." method="_on_Explosion_animation_finished"]

@@ -15,6 +15,7 @@ var levels = [
 
 var color_green = Color("60e143")
 var color_red = Color("d62121")
+var color_blue = Color("3c66e7")
 
 var enemy_counter = 0
 
