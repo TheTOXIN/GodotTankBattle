@@ -55,11 +55,12 @@ margin_left = -64.0
 
 [node name="EffectAim" parent="HUD/GUI/Container/Effects" instance=ExtResource( 7 )]
 margin_top = 68.0
-margin_bottom = 68.0
+margin_bottom = 132.0
+rect_min_size = Vector2( 64, 64 )
 
 [node name="EffectShield" parent="HUD/GUI/Container/Effects" instance=ExtResource( 8 )]
-margin_top = 72.0
-margin_bottom = 72.0
+margin_top = 136.0
+margin_bottom = 136.0
 
 [node name="Speed" type="MarginContainer" parent="HUD/GUI/Container"]
 anchor_top = 1.0

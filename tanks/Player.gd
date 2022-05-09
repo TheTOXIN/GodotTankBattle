@@ -49,7 +49,7 @@ func control(delta):
 		track_trails = false
 		speed_stop = 0
 				
-	if Input.is_action_just_pressed("click") or Input.is_action_pressed("ui_select"):
+	if Input.is_action_just_pressed("click"):
 		shoot(null)
 		
 	if Input.is_action_pressed("restart") and Globals.debag_mode:
